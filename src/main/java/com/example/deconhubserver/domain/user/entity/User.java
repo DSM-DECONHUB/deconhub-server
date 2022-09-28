@@ -1,11 +1,14 @@
 package com.example.deconhubserver.domain.user.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -20,7 +23,8 @@ public class User {
     @Column(name = "nickName", nullable = false)
     private String name;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
+    @Email
     private String email;
 
     @Column(name = "password", nullable = false)
