@@ -28,11 +28,11 @@ public class User {
     private String email;
 
     @NotNull
-    @Length(max = 60)
+    @Length(max = 68)
     private String password;
 
     @Builder
-    private User(String accountId, String email, String password) {
+    public User(String accountId, String email, String password) {
         this.accountId = accountId;
         this.email = email;
         this.password = password;
