@@ -1,24 +1,25 @@
 package com.example.deconhubserver.domain.user.dto;
 
 import com.example.deconhubserver.domain.user.entity.User;
+import com.example.deconhubserver.domain.user.enums.Role;
 import lombok.Getter;
 
 @Getter
 public class UserResponse {
-    private final Long id;
     private final String email;
     private final String accountId;
+    private final Role role;
 
-    private UserResponse(Long id, String email, String accountId){
-        this.id = id;
+    private UserResponse(String email, String accountId, Role role){
         this.email = email;
         this.accountId = accountId;
+        this.role = role;
     }
 
     public static UserResponse of(User user){
         return new UserResponse(
-                user.getId(),
                 user.getEmail(),
-                user.getAccountId());
+                user.getAccountId(),
+                user.getRole());
     }
 }
