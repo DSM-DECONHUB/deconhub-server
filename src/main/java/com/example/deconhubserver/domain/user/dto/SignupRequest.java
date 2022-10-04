@@ -1,12 +1,14 @@
 package com.example.deconhubserver.domain.user.dto;
 
-import lombok.AllArgsConstructor;
+import com.example.deconhubserver.domain.user.enums.Role;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@NoArgsConstructor
 public class SignupRequest {
-    private final String email;
-    private final String password;
-    private final String accountId;
+    private String email;
+    private String password;
+    private String accountId;
+    private Role role;
 }
