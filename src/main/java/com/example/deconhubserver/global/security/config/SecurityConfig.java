@@ -1,6 +1,5 @@
 package com.example.deconhubserver.global.security.config;
 
-
 import com.example.deconhubserver.global.security.filter.JwtAuthenticationFilter;
 import com.example.deconhubserver.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
