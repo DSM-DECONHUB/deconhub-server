@@ -1,7 +1,6 @@
 package com.example.deconhubserver.global.security.filter;
 
 import com.example.deconhubserver.global.security.jwt.JwtTokenProvider;
-import com.example.deconhubserver.global.security.jwt.dto.TokenResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -22,7 +21,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // request 에서 token 취함.
-        String token = jwtTokenProvider.resolveToken((HttpServletRequest)request);
+        String token = jwtTokenProvider.resolveToken(request);
 
         // 검증
         log.info("토큰을 확인하는중");
