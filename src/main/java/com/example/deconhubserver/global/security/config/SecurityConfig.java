@@ -1,23 +1,31 @@
 package com.example.deconhubserver.global.security.config;
 
 
+import com.example.deconhubserver.global.security.filter.JwtAuthenticationFilter;
+import com.example.deconhubserver.global.security.jwt.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
 @Configuration
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+@RequiredArgsConstructor
+public class SecurityConfig{
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/js/**","/css/**", "/html/**");
+    private final JwtTokenProvider jwtTokenProvider;
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() throws Exception {
+        return(web)-> web.ignoring().antMatchers("/js/**","/css/**", "/html/**");
     }
 
     @Bean
@@ -25,15 +33,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .httpBasic().disable()
+                .formLogin().disable()
                 .csrf().disable()
                 .cors().disable()
+
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
+                .and()
+
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST , "/user/login").permitAll()
                 .antMatchers(HttpMethod.POST,"/user/signup").permitAll()
-                .anyRequest().authenticated();
+                .antMatchers(HttpMethod.GET, "/user/reissue").permitAll()
+                .anyRequest().authenticated()
+
+                .and()
+
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
+                        UsernamePasswordAuthenticationFilter.class);
+        return http.build();
     }
 }
