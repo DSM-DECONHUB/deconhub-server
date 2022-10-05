@@ -31,8 +31,11 @@ public class JwtTokenProvider {
     @Value("${spring.jwt.key}")
     private String key;
 
-    private static final Long atkTime = 10 * 1000L;
-    private static final Long rtkTime = 7 * 24 * 60 *  60 * 1000L;
+    @Value("${spring.jwt.atk}")
+    private final Long atkTime;
+
+    @Value("${spring.jwt.rtk}")
+    private final Long rtkTime;
 
     @PostConstruct
     protected void init(){key = Base64.getEncoder().encodeToString(key.getBytes());
