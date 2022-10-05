@@ -23,7 +23,7 @@ public class SecurityConfig{
     private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() throws Exception {
+    public WebSecurityCustomizer webSecurityCustomizer(){
         return(web)-> web.ignoring().antMatchers("/js/**","/css/**", "/html/**");
     }
 
