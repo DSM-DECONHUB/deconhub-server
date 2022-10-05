@@ -3,7 +3,6 @@ package com.example.deconhubserver.global.security.jwt;
 import com.example.deconhubserver.domain.user.dto.UserResponse;
 import com.example.deconhubserver.global.security.jwt.dao.RedisDao;
 import com.example.deconhubserver.global.security.jwt.dto.TokenResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,7 +38,7 @@ public class JwtTokenProvider {
     protected void init(){key = Base64.getEncoder().encodeToString(key.getBytes());
     }
 
-    public TokenResponse createTokenByLogin(UserResponse userResponse) throws JsonProcessingException{
+    public TokenResponse createTokenByLogin(UserResponse userResponse){
         String atk = createToken(userResponse, atkTime, "atk");
         String rtk = createToken(userResponse, rtkTime, "rtk");
         redisDao.setValues(userResponse.getEmail(), rtk, Duration.ofMillis(rtkTime));
@@ -83,13 +82,13 @@ public class JwtTokenProvider {
         }
     }
 
-    public TokenResponse reissueAtk(UserResponse userResponse) throws JsonProcessingException {
+    public TokenResponse reissueAtk(UserResponse userResponse){
         String rtkInRedis = redisDao.getValues(userResponse.getEmail());
         if (Objects.isNull(rtkInRedis)) throw new IllegalStateException("인증 정보가 만료되었습니다.");
         return new TokenResponse(createToken(userResponse, atkTime, "atk"), null);
     }
 
-    private String createToken(UserResponse userResponse, Long tokenTime, String type) throws JsonProcessingException{
+    private String createToken(UserResponse userResponse, Long tokenTime, String type){
         Claims claims = Jwts.claims().setSubject(userResponse.getEmail());
         claims.put("roles", userResponse.getRole());
         Date date = new Date();
