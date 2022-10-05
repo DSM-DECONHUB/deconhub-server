@@ -7,7 +7,6 @@ import com.example.deconhubserver.domain.user.service.UserService;
 import com.example.deconhubserver.global.security.auth.AuthDetails;
 import com.example.deconhubserver.global.security.jwt.JwtTokenProvider;
 import com.example.deconhubserver.global.security.jwt.dto.TokenResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public TokenResponse login(@RequestBody LoginRequest request)throws JsonProcessingException {
+    public TokenResponse login(@RequestBody LoginRequest request){
         UserResponse userResponse = userService.login(request);
         return jwtTokenProvider.createTokenByLogin(userResponse);
     }
@@ -33,9 +32,9 @@ public class UserController {
     @GetMapping("/reissue")
     public TokenResponse reissue(
             @AuthenticationPrincipal AuthDetails authDetails
-    ) throws JsonProcessingException {
+    ){
         UserResponse userResponse = UserResponse.of(authDetails.getUser());
         return jwtTokenProvider.reissueAtk(userResponse);
     }
-    
+
 }
