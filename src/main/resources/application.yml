@@ -11,6 +11,8 @@ spring:
 
   jwt:
     key: ${JWT_KEY}
+    atk: ${JWT_ATK}
+    rtk: ${JWT_RTK}
 
   jpa:
     hibernate:
