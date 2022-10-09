@@ -21,7 +21,9 @@ public class UserService {
     @Transactional
     public UserResponse signup(SignupRequest request){
         boolean isExist = userRepository.existsByEmail(request.getEmail());
-        if(isExist) throw new IllegalStateException("이미 존재하는 이메일 입니다.");
+        boolean isExist2 = userRepository.existsByAccountId(request.getAccountId());
+        if(isExist) throw new IllegalStateException("이미 가입하신 이메일 입니다.");
+        if(isExist2) throw  new IllegalStateException("이미 있는 아이디 입니다.");
 
         User user = new User(
                 request.getAccountId(),
@@ -34,8 +36,9 @@ public class UserService {
 
     @Transactional
     public UserResponse login(LoginRequest request){
-        User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new IllegalArgumentException("이메일이 맞지 않습니다."));
+
+        User user = userRepository.findByAccountId(request.getAccountId())
+                .orElseThrow(() -> new IllegalArgumentException("아이디가 맞지 않습니다."));
 
         if(passwordEncoder.matches(request.getPassword(), user.getPassword())){
             return UserResponse.of(user);
