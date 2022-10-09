@@ -31,11 +31,11 @@ public class JwtTokenProvider {
     @Value("${spring.jwt.key}")
     private String key;
 
-    @Value("${spring.jwt.atk}")
-    private final Long atkTime;
+    @Value("${spring.jwt.live.atk}")
+    private Long atkTime;
 
-    @Value("${spring.jwt.rtk}")
-    private final Long rtkTime;
+    @Value("${spring.jwt.live.rtk}")
+    private Long rtkTime;
 
     @PostConstruct
     protected void init(){key = Base64.getEncoder().encodeToString(key.getBytes());
@@ -44,7 +44,7 @@ public class JwtTokenProvider {
     public TokenResponse createTokenByLogin(UserResponse userResponse){
         String atk = createToken(userResponse, atkTime, "atk");
         String rtk = createToken(userResponse, rtkTime, "rtk");
-        redisDao.setValues(userResponse.getEmail(), rtk, Duration.ofMillis(rtkTime));
+        redisDao.setValues(userResponse.getAccountId(), rtk, Duration.ofMillis(rtkTime));
         return new TokenResponse(atk, rtk);
     }
 
@@ -86,13 +86,13 @@ public class JwtTokenProvider {
     }
 
     public TokenResponse reissueAtk(UserResponse userResponse){
-        String rtkInRedis = redisDao.getValues(userResponse.getEmail());
+        String rtkInRedis = redisDao.getValues(userResponse.getAccountId());
         if (Objects.isNull(rtkInRedis)) throw new IllegalStateException("인증 정보가 만료되었습니다.");
         return new TokenResponse(createToken(userResponse, atkTime, "atk"), null);
     }
 
     private String createToken(UserResponse userResponse, Long tokenTime, String type){
-        Claims claims = Jwts.claims().setSubject(userResponse.getEmail());
+        Claims claims = Jwts.claims().setSubject(userResponse.getAccountId());
         claims.put("roles", userResponse.getRole());
         Date date = new Date();
         return Jwts.builder()
