@@ -11,8 +11,9 @@ spring:
 
   jwt:
     key: ${JWT_KEY}
-    atk: ${JWT_ATK}
-    rtk: ${JWT_RTK}
+    live:
+      atk: ${ACCESSTOKEN_LIVE}
+      rtk: ${REFRESHTOKEN_LIVE}
 
   jpa:
     hibernate:
