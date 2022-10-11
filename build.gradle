@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
@@ -21,23 +21,32 @@ repositories {
 dependencies {
 
 	// validation
-	implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.2'
+	implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.3'
 
 	// database
 	implementation 'mysql:mysql-connector-java:8.0.28'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
 	// jpa
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.3'
 
+	// jwt
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+	// security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
 	// web
-	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
 
 	// lombok
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok:1.18.24'
+	annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
 
 	// test
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.3'
 }
 
 tasks.named('test') {

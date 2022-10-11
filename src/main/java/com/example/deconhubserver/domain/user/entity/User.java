@@ -1,5 +1,6 @@
 package com.example.deconhubserver.domain.user.entity;
 
+import com.example.deconhubserver.domain.user.enums.Role;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,14 +29,19 @@ public class User {
     private String email;
 
     @NotNull
-    @Length(max = 60)
+    @Length(max = 68)
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
     @Builder
-    private User(String accountId, String email, String password) {
+    public User(String accountId, String email, String password) {
         this.accountId = accountId;
         this.email = email;
         this.password = password;
+        this.role = Role.USER;
     }
 
     public void setPassword(String password) {
