@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="475aed15-b934-4339-b099-6f9978502e44" name="Changes" comment="Changes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/security/config/SwaggerConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/dto/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/dto/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/dto/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/dto/UserResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/security/auth/AuthDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/security/auth/AuthDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/security/jwt/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/security/jwt/JwtTokenProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/security/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/security/config/SecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +110,8 @@
       <workItem from="1664149959992" duration="6000" />
       <workItem from="1665025373367" duration="5126000" />
       <workItem from="1665117834231" duration="585000" />
-      <workItem from="1665216898595" duration="3944000" />
+      <workItem from="1665216898595" duration="10735000" />
+      <workItem from="1665407748115" duration="8403000" />
     </task>
     <servers />
   </component>
