@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,11 +20,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig{
 
     private final JwtTokenProvider jwtTokenProvider;
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer(){
-        return(web)-> web.ignoring().antMatchers("/js/**","/css/**", "/html/**");
-    }
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -44,10 +38,15 @@ public class SecurityConfig{
                 .and()
 
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST , "/user/login").permitAll()
+                .antMatchers(HttpMethod.POST,"/user/login").permitAll()
                 .antMatchers(HttpMethod.POST,"/user/signup").permitAll()
                 .antMatchers(HttpMethod.GET, "/user/reissue").permitAll()
+
+                .antMatchers("/swagger-ui/**").permitAll()
+                .antMatchers("/v3/api-docs/**").permitAll()
+
                 .anyRequest().authenticated()
+
 
                 .and()
 
