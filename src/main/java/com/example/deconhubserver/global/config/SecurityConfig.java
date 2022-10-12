@@ -1,4 +1,4 @@
-package com.example.deconhubserver.global.security.config;
+package com.example.deconhubserver.global.config;
 
 import com.example.deconhubserver.global.security.filter.JwtAuthenticationFilter;
 import com.example.deconhubserver.global.security.jwt.JwtTokenProvider;
@@ -41,6 +41,8 @@ public class SecurityConfig{
                 .antMatchers(HttpMethod.POST,"/user/login").permitAll()
                 .antMatchers(HttpMethod.POST,"/user/signup").permitAll()
                 .antMatchers(HttpMethod.GET, "/user/reissue").permitAll()
+                .antMatchers(HttpMethod.POST, "/user/lost/password").permitAll()
+                .antMatchers(HttpMethod.PATCH,"/user/lost/password").permitAll()
 
                 .antMatchers("/swagger-ui.html").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
