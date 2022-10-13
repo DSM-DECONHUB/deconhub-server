@@ -51,6 +51,7 @@ public class UserService {
     }
 
     // 이메일 코드 보낼때
+    @Transactional
     public void lostPassword(MailRequest mailRequest) {
 
         User user = userRepository.findByEmail(mailRequest.getEmail())
@@ -61,6 +62,7 @@ public class UserService {
     }
 
     // 코드 인증후 비밀번호 변경
+    @Transactional
     public void setPassword(PasswordRequest request) {
 
         User user = userRepository.findByCode(request.getCode())
