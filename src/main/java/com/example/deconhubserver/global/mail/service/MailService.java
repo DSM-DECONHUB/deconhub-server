@@ -16,13 +16,13 @@ public class MailService {
 
     private final JavaMailSender javaMailSender;
     private final UserRepository userRepository;
+    Random random = new Random();
 
     private String randomMessage(String accountId) {
 
         User user = userRepository.findByAccountId(accountId)
                 .orElseThrow(() -> new IllegalArgumentException("이메일을 찾을 수 없습니다."));
 
-        Random random = new Random();
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < 4; i++) {
