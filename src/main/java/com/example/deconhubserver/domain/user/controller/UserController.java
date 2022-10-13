@@ -16,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Tag(name = "user", description = "유저 관련 API 입니다.")
 @RestController
 @RequestMapping("/user")
@@ -50,13 +52,13 @@ public class UserController {
 
     @Operation(summary = "인증 코드 보낼 이메일 입력")
     @PostMapping("/lost/password")
-    public void mail(@RequestBody MailRequest request){
+    public void mail(@Valid @RequestBody MailRequest request){
         userService.lostPassword(request);
     }
 
     @Operation(summary = "인증 코드 입력후 비번 변경")
     @PatchMapping("/lost/password")
-    public void setPassword(@RequestBody PasswordRequest request){
+    public void setPassword(@Valid @RequestBody PasswordRequest request){
         userService.setPassword(request);
     }
 
