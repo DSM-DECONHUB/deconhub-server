@@ -8,7 +8,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import java.util.Random;
+import java.security.SecureRandom;
+
 
 @Service
 @RequiredArgsConstructor
@@ -16,10 +17,10 @@ public class MailService {
 
     private final JavaMailSender javaMailSender;
     private final UserRepository userRepository;
-    Random random = new Random();
 
     private String randomMessage(String accountId) {
 
+        SecureRandom random = new SecureRandom();
         User user = userRepository.findByAccountId(accountId)
                 .orElseThrow(() -> new IllegalArgumentException("이메일을 찾을 수 없습니다."));
 
