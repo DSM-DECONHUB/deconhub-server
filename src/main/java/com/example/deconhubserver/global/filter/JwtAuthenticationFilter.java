@@ -1,4 +1,4 @@
-package com.example.deconhubserver.global.security.filter;
+package com.example.deconhubserver.global.filter;
 
 import com.example.deconhubserver.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
