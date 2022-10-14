@@ -10,6 +10,10 @@ import lombok.Getter;
 public enum ErrorCode {
 
     BAD_REQUEST(400, "Bad Request"),
+    PASSWORD_MISS_MATCHED(409, "Password Miss Match"),
+
+    USER_NOT_FOUND(404, "User Not Found"),
+    USER_ALREADY_EXISTS(409, "User Already Exists"),
 
     INTERNAL_SERVER_ERROR(500, "Internal Server Error");
 
