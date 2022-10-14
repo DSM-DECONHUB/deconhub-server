@@ -1,4 +1,4 @@
-package com.example.deconhubserver.global.security.config;
+package com.example.deconhubserver.global.config;
 
 import com.example.deconhubserver.global.security.filter.JwtAuthenticationFilter;
 import com.example.deconhubserver.global.security.jwt.JwtTokenProvider;
