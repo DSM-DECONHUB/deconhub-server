@@ -52,7 +52,7 @@ public class UserService {
 
     // 이메일 코드 보낼때
     @Transactional
-    public void lostPassword(MailRequest mailRequest) {
+    public void lostPassword(MailRequest mailRequest)throws Exception {
 
         User user = userRepository.findByEmail(mailRequest.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("이메일을 찾을 수 없습니다."));

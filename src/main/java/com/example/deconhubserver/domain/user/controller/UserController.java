@@ -52,7 +52,7 @@ public class UserController {
 
     @Operation(summary = "인증 코드 보낼 이메일 입력")
     @PostMapping("/lost/password")
-    public void mail(@Valid @RequestBody MailRequest request){
+    public void mail(@Valid @RequestBody MailRequest request)throws Exception{
         userService.lostPassword(request);
     }
 
