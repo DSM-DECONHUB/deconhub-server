@@ -4,12 +4,13 @@ import com.example.deconhubserver.domain.user.entity.User;
 import com.example.deconhubserver.domain.user.repository.UserRepository;
 import com.example.deconhubserver.global.mail.dto.MailRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.security.SecureRandom;
-
 
 @Service
 @RequiredArgsConstructor
@@ -35,11 +36,24 @@ public class MailService {
         return sb.toString();
     }
 
-    public void mailSend(MailRequest mailRequest, String accountId) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(mailRequest.getEmail()); //받는 사람의 주소
-        message.setSubject("'Deconhub' 인증 코드"); // 제목
-        message.setText(accountId + "님 오늘도 즐거운 하루였나요??\n" + "인증번호는 ' " + randomMessage(accountId) + " ' 입니다.\n내일도 만나요!!"); // 내용
-        javaMailSender.send(message); //메일 발송
+    public void mailSend(MailRequest mailRequest, String accountId) throws Exception {
+        MimeMessage message = javaMailSender.createMimeMessage();
+
+        message.addRecipients(Message.RecipientType.TO, mailRequest.getEmail());
+        message.setSubject("'Deconhub' 인증 코드");
+
+        String msgg = "";
+        msgg += "<h1>안녕하세요 " + accountId + "님 비밀번호 인증 코드 입니다.</h1>";
+        msgg += "<br>";
+        msgg += "<p>아래 코드를 복사해 입력해주세요<p>";
+        msgg += "<br>";
+        msgg += "CODE : <strong>";
+        msgg += randomMessage(accountId) + "</strong>";
+
+        message.setText(msgg, "utf-8", "html");
+        message.setFrom(new InternetAddress("hoyoung7827@gmail.com", "Deconhub"));
+
+        javaMailSender.send(message);
+
     }
 }
