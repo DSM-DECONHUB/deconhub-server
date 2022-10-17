@@ -1,6 +1,6 @@
-package com.example.deconhubserver.global.security.config;
+package com.example.deconhubserver.global.config;
 
-import com.example.deconhubserver.global.security.filter.JwtAuthenticationFilter;
+import com.example.deconhubserver.global.filter.JwtAuthenticationFilter;
 import com.example.deconhubserver.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -36,22 +36,20 @@ public class SecurityConfig{
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
                 .and()
-
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/user/login").permitAll()
-                .antMatchers(HttpMethod.POST,"/user/signup").permitAll()
-                .antMatchers(HttpMethod.GET, "/user/reissue").permitAll()
 
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/v3/api-docs/**").permitAll()
 
+                .antMatchers(HttpMethod.POST,"/user/login").permitAll()
+                .antMatchers(HttpMethod.POST,"/user/signup").permitAll()
+                .antMatchers(HttpMethod.GET, "/user/reissue").permitAll()
+
                 .anyRequest().authenticated()
 
-
                 .and()
+                .apply(new FilterConfig(jwtTokenProvider));
 
-                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
-                        UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 }
