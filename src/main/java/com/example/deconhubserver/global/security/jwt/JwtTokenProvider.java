@@ -18,7 +18,6 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Base64;
 import java.util.Date;
-import java.util.Objects;
 
 @RequiredArgsConstructor
 @Component
@@ -48,7 +47,7 @@ public class JwtTokenProvider {
         refreshTokenRepository.save(
                 RefreshToken.builder()
                         .accountId(userResponse.getAccountId())
-                        .refreshToken(rtk)
+                        .rtk(rtk)
                         .rtkTime(rtkTime).build());
         return new TokenResponse(atk, rtk);
     }
