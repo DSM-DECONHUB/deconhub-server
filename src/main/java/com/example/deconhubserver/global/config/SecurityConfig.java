@@ -44,7 +44,6 @@ public class SecurityConfig{
                 .antMatchers(HttpMethod.POST, "/user/lost/password").permitAll()
                 .antMatchers(HttpMethod.PATCH,"/user/lost/password").permitAll()
 
-                .antMatchers("/swagger-ui.html").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/v3/api-docs/**").permitAll()
 
