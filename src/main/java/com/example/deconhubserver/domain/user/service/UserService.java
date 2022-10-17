@@ -1,10 +1,13 @@
 package com.example.deconhubserver.domain.user.service;
 
+import com.example.deconhubserver.domain.auth.exception.PasswordMissMatchedException;
 import com.example.deconhubserver.domain.user.dto.LoginRequest;
 import com.example.deconhubserver.domain.user.dto.PasswordRequest;
 import com.example.deconhubserver.domain.user.dto.SignupRequest;
 import com.example.deconhubserver.domain.user.dto.UserResponse;
 import com.example.deconhubserver.domain.user.entity.User;
+import com.example.deconhubserver.domain.user.exception.UserAlreadyExistsException;
+import com.example.deconhubserver.domain.user.exception.UserNotFoundException;
 import com.example.deconhubserver.domain.user.repository.UserRepository;
 import com.example.deconhubserver.global.mail.dto.MailRequest;
 import com.example.deconhubserver.global.mail.service.MailService;
@@ -24,10 +27,11 @@ public class UserService {
 
     @Transactional
     public void signup(SignupRequest request) {
-        boolean isExist = userRepository.existsByEmail(request.getEmail());
-        boolean isExist2 = userRepository.existsByAccountId(request.getAccountId());
-        if (isExist) throw new IllegalStateException("이미 가입하신 이메일 입니다.");
-        if (isExist2) throw new IllegalStateException("이미 있는 아이디 입니다.");
+
+        //email은 중복이 되어도 상관없다고 생각하여 email 중복 Exception 생략함
+        if (!userRepository.existsByAccountId(request.getAccountId())) {
+            throw UserAlreadyExistsException.EXCEPTION;
+        }
 
         User user = new User(
                 request.getAccountId(),
@@ -41,10 +45,10 @@ public class UserService {
     public UserResponse login(LoginRequest request) {
 
         User user = userRepository.findByAccountId(request.getAccountId())
-                .orElseThrow(() -> new IllegalArgumentException("아이디가 맞지 않습니다."));
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new IllegalStateException("비밀번호가 맞지 않습니다.");
+            throw PasswordMissMatchedException.EXCEPTION;
         }
 
         return UserResponse.of(user);
