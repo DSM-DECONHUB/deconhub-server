@@ -15,7 +15,7 @@ public class RefreshToken {
     @Id
     private String accountId;
 
-    private String refreshToken;
+    private String rtk;
 
     private Long rtkTime;
 }
