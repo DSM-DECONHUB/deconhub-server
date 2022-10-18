@@ -1,6 +1,7 @@
 package com.example.deconhubserver.global.mail.service;
 
 import com.example.deconhubserver.domain.user.entity.User;
+import com.example.deconhubserver.domain.user.exception.EmailNotFoundException;
 import com.example.deconhubserver.domain.user.repository.UserRepository;
 import com.example.deconhubserver.global.mail.dto.MailRequest;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class MailService {
 
         SecureRandom random = new SecureRandom();
         User user = userRepository.findByAccountId(accountId)
-                .orElseThrow(() -> new IllegalArgumentException("이메일을 찾을 수 없습니다."));
+                .orElseThrow(() -> EmailNotFoundException.EXCEPTION);
 
         StringBuilder sb = new StringBuilder();
 
