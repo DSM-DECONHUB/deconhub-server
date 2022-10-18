@@ -6,6 +6,8 @@ import com.example.deconhubserver.domain.user.dto.PasswordRequest;
 import com.example.deconhubserver.domain.user.dto.SignupRequest;
 import com.example.deconhubserver.domain.user.dto.UserResponse;
 import com.example.deconhubserver.domain.user.entity.User;
+import com.example.deconhubserver.domain.user.exception.CodeNotFoundException;
+import com.example.deconhubserver.domain.user.exception.EmailNotFoundException;
 import com.example.deconhubserver.domain.user.exception.UserAlreadyExistsException;
 import com.example.deconhubserver.domain.user.exception.UserNotFoundException;
 import com.example.deconhubserver.domain.user.repository.UserRepository;
@@ -59,7 +61,7 @@ public class UserService {
     public void lostPassword(MailRequest mailRequest)throws Exception {
 
         User user = userRepository.findByEmail(mailRequest.getEmail())
-                .orElseThrow(() -> new IllegalArgumentException("이메일을 찾을 수 없습니다."));
+                .orElseThrow(() -> EmailNotFoundException.EXCEPTION);
 
         mailService.mailSend(mailRequest, user.getAccountId());
 
@@ -70,12 +72,12 @@ public class UserService {
     public void setPassword(PasswordRequest request) {
 
         User user = userRepository.findByCode(request.getCode())
-                .orElseThrow(() -> new IllegalArgumentException("코드를 다시 입력 해주세요.."));
+                .orElseThrow(() -> CodeNotFoundException.EXCEPTION);
 
         if (user.getCode() != null) {
 
             if (!request.getNewPassword().equals(request.getNewPasswordValid())) {
-                throw new IllegalStateException("비밀번호가 맞지 않습니다.");
+                throw PasswordMissMatchedException.EXCEPTION;
             }
 
             user.setPassword(passwordEncoder.encode(request.getNewPassword()));
