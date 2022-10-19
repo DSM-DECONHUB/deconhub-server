@@ -4,7 +4,7 @@ import com.example.deconhubserver.global.error.ErrorCode;
 import com.example.deconhubserver.global.error.exception.CustomException;
 
 public class PasswordMissException extends CustomException {
-    public static final PasswordMissException EXCEPTION =
+    public static final CustomException EXCEPTION =
             new PasswordMissException();
 
     private PasswordMissException(){

@@ -4,7 +4,7 @@ import com.example.deconhubserver.global.error.ErrorCode;
 import com.example.deconhubserver.global.error.exception.CustomException;
 
 public class CodeNotFoundException extends CustomException {
-    public static final CodeNotFoundException EXCEPTION =
+    public static final CustomException EXCEPTION =
             new CodeNotFoundException();
 
     private CodeNotFoundException() {
