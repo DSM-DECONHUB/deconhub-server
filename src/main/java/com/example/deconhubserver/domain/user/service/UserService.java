@@ -1,15 +1,13 @@
 package com.example.deconhubserver.domain.user.service;
 
 import com.example.deconhubserver.domain.auth.exception.PasswordMissMatchedException;
-import com.example.deconhubserver.domain.user.dto.LoginRequest;
-import com.example.deconhubserver.domain.user.dto.PasswordRequest;
-import com.example.deconhubserver.domain.user.dto.SignupRequest;
-import com.example.deconhubserver.domain.user.dto.UserResponse;
+import com.example.deconhubserver.domain.user.dto.*;
 import com.example.deconhubserver.domain.user.entity.User;
 import com.example.deconhubserver.domain.user.exception.CodeNotFoundException;
 import com.example.deconhubserver.domain.user.exception.EmailNotFoundException;
 import com.example.deconhubserver.domain.user.exception.UserAlreadyExistsException;
 import com.example.deconhubserver.domain.user.exception.UserNotFoundException;
+import com.example.deconhubserver.domain.user.facade.UserFacade;
 import com.example.deconhubserver.domain.user.repository.UserRepository;
 import com.example.deconhubserver.global.mail.dto.MailRequest;
 import com.example.deconhubserver.global.mail.service.MailService;
@@ -26,12 +24,13 @@ public class UserService {
     private final UserRepository userRepository;
     private final MailService mailService;
     private final PasswordEncoder passwordEncoder;
+    private final UserFacade userFacade;
 
     @Transactional
     public void signup(SignupRequest request) {
 
         //email은 중복이 되어도 상관없다고 생각하여 email 중복 Exception 생략함
-        if (userRepository.existsByAccountId(request.getAccountId())) {
+        if (userRepository.existsUserByAccountId(request.getAccountId())) {
             throw UserAlreadyExistsException.EXCEPTION;
         }
 
@@ -50,8 +49,7 @@ public class UserService {
     @Transactional
     public UserResponse login(LoginRequest request) {
 
-        User user = userRepository.findByAccountId(request.getAccountId())
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+        User user = userFacade.getUserByAccountId(request.getAccountId());
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw PasswordMissMatchedException.EXCEPTION;
@@ -64,18 +62,16 @@ public class UserService {
     @Transactional
     public void lostPassword(MailRequest mailRequest)throws Exception {
 
-        User user = userRepository.findByEmail(mailRequest.getEmail())
-                .orElseThrow(() -> EmailNotFoundException.EXCEPTION);
+        User user = userFacade.getUserByEmail(mailRequest.getEmail());
 
         mailService.mailSend(mailRequest, user.getAccountId());
-
     }
 
     // 코드 인증후 비밀번호 변경
     @Transactional
     public void setPassword(PasswordRequest request) {
 
-        User user = userRepository.findByCode(request.getCode())
+        User user = userRepository.findUserByCode(request.getCode())
                 .orElseThrow(() -> CodeNotFoundException.EXCEPTION);
 
         if (user.getCode() != null) {
@@ -88,6 +84,16 @@ public class UserService {
             user.setCode(null);
             userRepository.save(user);
         }
-
     }
+
+    @Transactional(readOnly = true)
+    public MyInfoResponse queryMyInfo() {
+        User user = userFacade.getCurrentUser();
+
+        return MyInfoResponse.builder()
+                .accountId(user.getAccountId())
+                .email(user.getEmail())
+                .build();
+    }
+
 }

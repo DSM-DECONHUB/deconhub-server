@@ -93,7 +93,7 @@ public class JwtTokenProvider {
 
     public TokenResponse reissueAtk(UserResponse userResponse) {
         boolean rtkInRedis = refreshTokenRepository.existsByAccountId(userResponse.getAccountId());
-        if (rtkInRedis) throw new IllegalStateException("인증 정보가 만료되었습니다.");
+        if (rtkInRedis) throw JwtExpiredException.EXCEPTION;
         return new TokenResponse(createToken(userResponse, atkTime, "atk"), null);
     }
 
