@@ -2,6 +2,7 @@ package com.example.deconhubserver.global.mail.service;
 
 import com.example.deconhubserver.domain.user.entity.User;
 import com.example.deconhubserver.domain.user.exception.EmailNotFoundException;
+import com.example.deconhubserver.domain.user.facade.UserFacade;
 import com.example.deconhubserver.domain.user.repository.UserRepository;
 import com.example.deconhubserver.global.mail.dto.MailRequest;
 import lombok.RequiredArgsConstructor;
@@ -18,13 +19,13 @@ import java.security.SecureRandom;
 public class MailService {
 
     private final JavaMailSender javaMailSender;
+    private final UserFacade userFacade;
     private final UserRepository userRepository;
 
     private String randomMessage(String accountId) {
 
         SecureRandom random = new SecureRandom();
-        User user = userRepository.findByAccountId(accountId)
-                .orElseThrow(() -> EmailNotFoundException.EXCEPTION);
+        User user = userFacade.getUserByAccountId(accountId);
 
         StringBuilder sb = new StringBuilder();
 

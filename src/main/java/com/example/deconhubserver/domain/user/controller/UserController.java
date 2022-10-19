@@ -1,9 +1,6 @@
 package com.example.deconhubserver.domain.user.controller;
 
-import com.example.deconhubserver.domain.user.dto.LoginRequest;
-import com.example.deconhubserver.domain.user.dto.PasswordRequest;
-import com.example.deconhubserver.domain.user.dto.SignupRequest;
-import com.example.deconhubserver.domain.user.dto.UserResponse;
+import com.example.deconhubserver.domain.user.dto.*;
 import com.example.deconhubserver.domain.user.service.UserService;
 import com.example.deconhubserver.global.mail.dto.MailRequest;
 import com.example.deconhubserver.global.security.auth.AuthDetails;
@@ -52,14 +49,21 @@ public class UserController {
 
     @Operation(summary = "인증 코드 보낼 이메일 입력")
     @PostMapping("/lost/password")
-    public void mail(@Valid @RequestBody MailRequest request)throws Exception{
+    public void mail(@Valid @RequestBody MailRequest request) throws Exception {
         userService.lostPassword(request);
     }
 
     @Operation(summary = "인증 코드 입력후 비번 변경")
     @PatchMapping("/lost/password")
-    public void setPassword(@Valid @RequestBody PasswordRequest request){
+    public void setPassword(@Valid @RequestBody PasswordRequest request) {
         userService.setPassword(request);
     }
+
+    @Operation(summary = "자신의 정보 보기")
+    @GetMapping()
+    public MyInfoResponse queryMyInfo() {
+        return userService.queryMyInfo();
+    }
+
 
 }
