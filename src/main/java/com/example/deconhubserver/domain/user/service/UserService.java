@@ -35,6 +35,10 @@ public class UserService {
             throw UserAlreadyExistsException.EXCEPTION;
         }
 
+        if(!request.getPassword().equals(request.getPasswordValid())){
+             throw PasswordMissMatchedException.EXCEPTION;
+        }
+
         User user = new User(
                 request.getAccountId(),
                 request.getEmail(),
