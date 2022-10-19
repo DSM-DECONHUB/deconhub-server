@@ -10,10 +10,15 @@ import lombok.Getter;
 public enum ErrorCode {
 
     BAD_REQUEST(400, "Bad Request"),
+
     PASSWORD_MISS_MATCHED(409, "Password Miss Match"),
 
     USER_NOT_FOUND(404, "User Not Found"),
     USER_ALREADY_EXISTS(409, "User Already Exists"),
+    ROLE_NOT_FOUND(404,"Role Not Found"),
+
+    JWT_EXPIRED(401, "Jwt Expired"),
+    JWT_INVALID(401, "Jwt Invalid"),
 
     INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
 
