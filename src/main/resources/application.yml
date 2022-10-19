@@ -5,6 +5,9 @@ spring:
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
   redis:
     host: ${REDIS_HOST}
     port: ${REDIS_PORT}
@@ -21,13 +24,13 @@ spring:
           starttls:
             enable: true
 
-      jwt:
-        key: ${JWT_KEY}
-        live:
-          atk: ${ACCESSTOKEN_LIVE}
-          rtk: ${REFRESHTOKEN_LIVE}
+  jwt:
+    key: ${JWT_KEY}
+    live:
+      atk: ${ACCESSTOKEN_LIVE}
+      rtk: ${REFRESHTOKEN_LIVE}
 
-      jpa:
-        hibernate:
-          ddl-auto: update
-        show-sql: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
