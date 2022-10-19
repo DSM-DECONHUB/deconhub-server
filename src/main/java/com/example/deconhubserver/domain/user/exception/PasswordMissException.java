@@ -3,11 +3,11 @@ package com.example.deconhubserver.domain.user.exception;
 import com.example.deconhubserver.global.error.ErrorCode;
 import com.example.deconhubserver.global.error.exception.CustomException;
 
-public class UserAlreadyExistsException extends CustomException {
+public class PasswordMissException extends CustomException {
     public static final CustomException EXCEPTION =
-            new UserAlreadyExistsException();
+            new PasswordMissException();
 
-    private UserAlreadyExistsException() {
-        super(ErrorCode.USER_ALREADY_EXISTS);
+    private PasswordMissException(){
+        super(ErrorCode.PASSWORD_MISS_MATCHED);
     }
 }

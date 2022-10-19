@@ -3,11 +3,11 @@ package com.example.deconhubserver.domain.user.exception;
 import com.example.deconhubserver.global.error.ErrorCode;
 import com.example.deconhubserver.global.error.exception.CustomException;
 
-public class UserAlreadyExistsException extends CustomException {
+public class EmailNotFoundException extends CustomException {
     public static final CustomException EXCEPTION =
-            new UserAlreadyExistsException();
+            new EmailNotFoundException();
 
-    private UserAlreadyExistsException() {
-        super(ErrorCode.USER_ALREADY_EXISTS);
+    private EmailNotFoundException() {
+        super(ErrorCode.EMAIL_NOT_FOUND);
     }
 }

@@ -32,6 +32,8 @@ public class User {
     @Length(max = 68)
     private String password;
 
+    private String code;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
@@ -47,5 +49,7 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public void setCode(String code){ this.code = code;}
 
 }

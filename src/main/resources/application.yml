@@ -9,13 +9,25 @@ spring:
     host: ${REDIS_HOST}
     port: ${REDIS_PORT}
 
-  jwt:
-    key: ${JWT_KEY}
-    live:
-      atk: ${ACCESSTOKEN_LIVE}
-      rtk: ${REFRESHTOKEN_LIVE}
+mail:
+  host: ${MAIL_HOST}
+  port: ${MAIL_POST}
+  username: ${MAIL_USERNAME}
+  password: ${MAIL_PASSWORD}
+  properties:
+    mail:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
 
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-    show-sql: true
+    jwt:
+      key: ${JWT_KEY}
+      live:
+        atk: ${ACCESSTOKEN_LIVE}
+        rtk: ${REFRESHTOKEN_LIVE}
+
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
