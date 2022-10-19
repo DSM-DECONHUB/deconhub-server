@@ -31,7 +31,7 @@ public class UserService {
     public void signup(SignupRequest request) {
 
         //email은 중복이 되어도 상관없다고 생각하여 email 중복 Exception 생략함
-        if (!userRepository.existsByAccountId(request.getAccountId())) {
+        if (userRepository.existsByAccountId(request.getAccountId())) {
             throw UserAlreadyExistsException.EXCEPTION;
         }
 
