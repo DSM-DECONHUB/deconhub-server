@@ -1,12 +1,12 @@
 package com.example.deconhubserver.global.security.jwt;
 
 import com.example.deconhubserver.domain.user.dto.UserResponse;
+import com.example.deconhubserver.domain.user.exception.RoleNotFoundException;
 import com.example.deconhubserver.global.security.jwt.dto.TokenResponse;
 import com.example.deconhubserver.global.security.jwt.entity.RefreshToken;
 import com.example.deconhubserver.global.security.jwt.repository.RefreshTokenRepository;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,7 +21,6 @@ import java.util.Date;
 
 @RequiredArgsConstructor
 @Component
-@Slf4j
 public class JwtTokenProvider {
 
     private final UserDetailsService userDetailsService;
@@ -58,7 +57,7 @@ public class JwtTokenProvider {
         Claims claims = parseClaims(token);
         // 권한 정보가 없음
         if (claims.get("roles") == null) {
-            log.error("YOUR_NOT_ROLE");
+            throw RoleNotFoundException.EXCEPTION;
         }
         UserDetails userDetails = userDetailsService.loadUserByUsername(claims.getSubject());
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
@@ -84,7 +83,7 @@ public class JwtTokenProvider {
             Jwts.parser().setSigningKey(key).parseClaimsJws(jwtToken);
             return true;
         } catch (JwtException | IllegalArgumentException e) {
-            log.error(e.toString());
+            //log.error(e.toString());
             return false;
         }
     }
