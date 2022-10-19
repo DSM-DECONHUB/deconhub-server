@@ -1,9 +1,11 @@
 package com.example.deconhubserver.domain.user.controller;
 
 import com.example.deconhubserver.domain.user.dto.LoginRequest;
+import com.example.deconhubserver.domain.user.dto.PasswordRequest;
 import com.example.deconhubserver.domain.user.dto.SignupRequest;
 import com.example.deconhubserver.domain.user.dto.UserResponse;
 import com.example.deconhubserver.domain.user.service.UserService;
+import com.example.deconhubserver.global.mail.dto.MailRequest;
 import com.example.deconhubserver.global.security.auth.AuthDetails;
 import com.example.deconhubserver.global.security.jwt.JwtTokenProvider;
 import com.example.deconhubserver.global.security.jwt.dto.TokenResponse;
@@ -13,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Tag(name = "user", description = "유저 관련 API 입니다.")
 @RestController
@@ -44,6 +48,18 @@ public class UserController {
     ){
         UserResponse userResponse = UserResponse.of(authDetails.getUser());
         return jwtTokenProvider.reissueAtk(userResponse);
+    }
+
+    @Operation(summary = "인증 코드 보낼 이메일 입력")
+    @PostMapping("/lost/password")
+    public void mail(@Valid @RequestBody MailRequest request)throws Exception{
+        userService.lostPassword(request);
+    }
+
+    @Operation(summary = "인증 코드 입력후 비번 변경")
+    @PatchMapping("/lost/password")
+    public void setPassword(@Valid @RequestBody PasswordRequest request){
+        userService.setPassword(request);
     }
 
 }

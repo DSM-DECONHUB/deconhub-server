@@ -20,7 +20,11 @@ public enum ErrorCode {
     JWT_EXPIRED(401, "Jwt Expired"),
     JWT_INVALID(401, "Jwt Invalid"),
 
-    INTERNAL_SERVER_ERROR(500, "Internal Server Error");
+    INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
+
+    EMAIL_NOT_FOUND(404, "Email Not Found"),
+
+    CODE_NOT_FOUND(404, "Code Not Found");
 
     private final int status;
     private final String message;

@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="475aed15-b934-4339-b099-6f9978502e44" name="Changes" comment="Changes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/dto/PasswordRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/exception/UserAlreadyExistsException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/exception/UserAlreadyExistsException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/error/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/error/ErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/security/jwt/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/security/jwt/JwtTokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/config/JpaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/config/JpaConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/config/RedisConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/global/config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +43,7 @@
       <list>
         <option value="Kotlin Enum" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>

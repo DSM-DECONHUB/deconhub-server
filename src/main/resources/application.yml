@@ -5,17 +5,21 @@ spring:
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-  redis:
-    host: ${REDIS_HOST}
-    port: ${REDIS_PORT}
-
-  jwt:
-    key: ${JWT_KEY}
-    live:
-      atk: ${ACCESSTOKEN_LIVE}
-      rtk: ${REFRESHTOKEN_LIVE}
-
   jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
       ddl-auto: update
-    show-sql: true
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+  redis:
+    port: ${REDIS_PORT}
+    host: ${REDIS_HOST}
+
+jwt:
+  key: ${JWT_KEY}
+  live:
+    atk: ${ACCESSTOKEN_LIVE}
+    rtk: ${REFRESHTOKEN_LIVE}
