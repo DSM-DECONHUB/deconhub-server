@@ -2,6 +2,8 @@ package com.example.deconhubserver.global.security.jwt;
 
 import com.example.deconhubserver.domain.user.dto.UserResponse;
 import com.example.deconhubserver.domain.user.exception.RoleNotFoundException;
+import com.example.deconhubserver.global.exception.JwtExpiredException;
+import com.example.deconhubserver.global.exception.JwtInvalidException;
 import com.example.deconhubserver.global.security.jwt.dto.TokenResponse;
 import com.example.deconhubserver.global.security.jwt.entity.RefreshToken;
 import com.example.deconhubserver.global.security.jwt.repository.RefreshTokenRepository;
@@ -82,9 +84,10 @@ public class JwtTokenProvider {
         try {
             Jwts.parser().setSigningKey(key).parseClaimsJws(jwtToken);
             return true;
-        } catch (JwtException | IllegalArgumentException e) {
-            //log.error(e.toString());
-            return false;
+        } catch (ExpiredJwtException e) {
+            throw JwtExpiredException.EXCEPTION;
+        } catch (Exception e) {
+            throw JwtInvalidException.EXCEPTION;
         }
     }
 
