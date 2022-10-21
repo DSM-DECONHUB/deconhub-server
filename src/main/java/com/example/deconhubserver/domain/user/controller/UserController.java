@@ -2,7 +2,7 @@ package com.example.deconhubserver.domain.user.controller;
 
 import com.example.deconhubserver.domain.user.dto.*;
 import com.example.deconhubserver.domain.user.service.UserService;
-import com.example.deconhubserver.global.mail.dto.MailRequest;
+import com.example.deconhubserver.infrastucture.mail.dto.MailRequest;
 import com.example.deconhubserver.global.security.auth.AuthDetails;
 import com.example.deconhubserver.global.security.jwt.JwtTokenProvider;
 import com.example.deconhubserver.global.security.jwt.dto.TokenResponse;
