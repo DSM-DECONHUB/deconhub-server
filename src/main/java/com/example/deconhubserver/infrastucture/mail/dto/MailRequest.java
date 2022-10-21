@@ -1,4 +1,4 @@
-package com.example.deconhubserver.global.mail.dto;
+package com.example.deconhubserver.infrastucture.mail.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
