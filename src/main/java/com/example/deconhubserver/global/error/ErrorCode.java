@@ -13,6 +13,7 @@ public enum ErrorCode {
 
     PASSWORD_MISS_MATCHED(409, "Password Miss Match"),
 
+    USER_MISS_MATCHED(409,"User Miss Match"),
     USER_NOT_FOUND(404, "User Not Found"),
     USER_ALREADY_EXISTS(409, "User Already Exists"),
     ROLE_NOT_FOUND(404,"Role Not Found"),
@@ -24,7 +25,9 @@ public enum ErrorCode {
 
     EMAIL_NOT_FOUND(404, "Email Not Found"),
 
-    CODE_NOT_FOUND(404, "Code Not Found");
+    CODE_NOT_FOUND(404, "Code Not Found"),
+
+    CONTEST_NOT_FOUND(404, "Contest Not Found");
 
     private final int status;
     private final String message;
