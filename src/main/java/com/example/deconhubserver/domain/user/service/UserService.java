@@ -4,9 +4,7 @@ import com.example.deconhubserver.domain.auth.exception.PasswordMissMatchedExcep
 import com.example.deconhubserver.domain.user.dto.*;
 import com.example.deconhubserver.domain.user.entity.User;
 import com.example.deconhubserver.domain.user.exception.CodeNotFoundException;
-import com.example.deconhubserver.domain.user.exception.EmailNotFoundException;
 import com.example.deconhubserver.domain.user.exception.UserAlreadyExistsException;
-import com.example.deconhubserver.domain.user.exception.UserNotFoundException;
 import com.example.deconhubserver.domain.user.facade.UserFacade;
 import com.example.deconhubserver.domain.user.repository.UserRepository;
 import com.example.deconhubserver.global.mail.dto.MailRequest;
@@ -34,8 +32,8 @@ public class UserService {
             throw UserAlreadyExistsException.EXCEPTION;
         }
 
-        if(!request.getPassword().equals(request.getPasswordValid())){
-             throw PasswordMissMatchedException.EXCEPTION;
+        if (!request.getPassword().equals(request.getPasswordValid())) {
+            throw PasswordMissMatchedException.EXCEPTION;
         }
 
         User user = new User(
@@ -60,7 +58,7 @@ public class UserService {
 
     // 이메일 코드 보낼때
     @Transactional
-    public void lostPassword(MailRequest mailRequest)throws Exception {
+    public void lostPassword(MailRequest mailRequest) throws Exception {
 
         User user = userFacade.getUserByEmail(mailRequest.getEmail());
 
