@@ -4,13 +4,11 @@ import com.example.deconhubserver.domain.auth.exception.PasswordMissMatchedExcep
 import com.example.deconhubserver.domain.user.dto.*;
 import com.example.deconhubserver.domain.user.entity.User;
 import com.example.deconhubserver.domain.user.exception.CodeNotFoundException;
-import com.example.deconhubserver.domain.user.exception.EmailNotFoundException;
 import com.example.deconhubserver.domain.user.exception.UserAlreadyExistsException;
-import com.example.deconhubserver.domain.user.exception.UserNotFoundException;
 import com.example.deconhubserver.domain.user.facade.UserFacade;
 import com.example.deconhubserver.domain.user.repository.UserRepository;
-import com.example.deconhubserver.global.mail.dto.MailRequest;
-import com.example.deconhubserver.global.mail.service.MailService;
+import com.example.deconhubserver.infrastucture.mail.dto.MailRequest;
+import com.example.deconhubserver.infrastucture.mail.service.MailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
