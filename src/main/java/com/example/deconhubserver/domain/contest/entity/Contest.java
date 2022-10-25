@@ -56,7 +56,6 @@ public class Contest {
     private User user;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private ContestCategory category; // 대회 카테고리
 
     @Builder
@@ -78,41 +77,17 @@ public class Contest {
     }
 
     public void setContest(ContestRequest request){
-        if(request.getTitle() != null){
             this.title = request.getTitle();
-        }
-        if(request.getIntroduce() != null){
             this.introduce = request.getIntroduce();
-        }
-        if(request.getPeriod() != null){
             this.period = request.getPeriod();
-        }
-        if(request.getPeriod() != null){
             this.place = request.getPlace();
-        }
-        if(request.getSignPeriod() != null){
             this.signPeriod = request.getSignPeriod();
-        }
-        if(request.getSponsor() != null){
             this.sponsor = request.getSponsor().replaceAll(",","");
-        }
-        if(request.getSiteAddress() != null){
             this.siteAddress = request.getSiteAddress();
-        }
-        if(request.getSignCondition() != null){
             this.signCondition = request.getSignCondition();
-        }
-        if(request.getSignWay() != null){
             this.signWay = request.getSignWay();
-        }
-        if(request.getHistory() != null){
             this.history = request.getHistory();
-        }
-        if(request.getTopic() != null){
             this.topic = request.getTopic();
-        }
-        if(request.getCategory() != null){
             this.category = request.getCategory();
-        }
     }
 }
