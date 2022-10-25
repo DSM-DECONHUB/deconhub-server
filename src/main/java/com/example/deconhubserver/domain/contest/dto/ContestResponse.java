@@ -4,8 +4,6 @@ import com.example.deconhubserver.domain.contest.enums.ContestCategory;
 import lombok.Builder;
 import lombok.Getter;
 
-import javax.persistence.*;
-
 @Getter
 @Builder
 public class ContestResponse {
@@ -32,8 +30,6 @@ public class ContestResponse {
 
     private final String topic; // 대회 주제
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private final ContestCategory category; // 대회 카테고리
 
 }
