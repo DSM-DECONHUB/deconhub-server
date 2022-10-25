@@ -37,7 +37,5 @@ public class ContestRequest {
 
     private String topic; // 대회 주제
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
     private ContestCategory category; // 대회 카테고리
 }
