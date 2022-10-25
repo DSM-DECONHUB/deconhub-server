@@ -51,15 +51,15 @@ public class ContestService {
     }
 
     @Transactional // 대회 수정
-    public void setContest(Long id, ContestRequest request) {
-        Contest contest = contestFacade.findById(id);
+    public void setContest(Long contestId, ContestRequest request) {
+        Contest contest = contestFacade.findById(contestId);
         userMatch(contest);
         contest.setContest(request);
     }
 
     @Transactional // 대회 삭제
-    public void delContest(Long id) {
-        Contest contest = contestFacade.findById(id);
+    public void delContest(Long contestId) {
+        Contest contest = contestFacade.findById(contestId);
         userMatch(contest);
         contestRepository.delete(contest);
     }
@@ -80,6 +80,7 @@ public class ContestService {
             contestLists.add(dto);
         }
         return contestLists;
+
     }
 
     @Transactional(readOnly = true) // 대회 필터 보기
@@ -123,8 +124,8 @@ public class ContestService {
     }
 
     @Transactional(readOnly = true) // 대회 상세보기
-    public ContestResponse contestDetail(Long id){
-        Contest contest = contestFacade.findById(id);
+    public ContestResponse contestDetail(Long contestId){
+        Contest contest = contestFacade.findById(contestId);
 
         return ContestResponse.builder()
                 .title(contest.getTitle())
