@@ -71,13 +71,12 @@ public class ContestService {
         List<ContestList> contestLists = new ArrayList<>();
 
         for (Contest contest : contests) {
-            ContestList dto = new ContestList(
-                    contest.getTitle(),
-                    contest.getPeriod(),
-                    contest.getCreatePeriod().until(contest.getSignPeriod(), ChronoUnit.DAYS) + 1,
-                    contest.getTopic(),
-                    contest.getCategory()
-            );
+            ContestList dto = ContestList.builder()
+                    .title(contest.getTitle())
+                    .period(contest.getPeriod())
+                    .dateTime(contest.getCreatePeriod().until(contest.getSignPeriod(), ChronoUnit.DAYS) + 1)
+                    .topic(contest.getTopic())
+                    .category(contest.getCategory()).build();
             contestLists.add(dto);
         }
         return contestLists;
@@ -91,13 +90,12 @@ public class ContestService {
 
         for (Contest contest : contests) {
             if (contest.getCategory().equals(category)) {
-                ContestList dto = new ContestList(
-                        contest.getTitle(),
-                        contest.getPeriod(),
-                        contest.getCreatePeriod().until(contest.getSignPeriod(), ChronoUnit.DAYS) + 1,
-                        contest.getTopic(),
-                        contest.getCategory()
-                );
+                ContestList dto = ContestList.builder()
+                        .title(contest.getTitle())
+                        .period(contest.getPeriod())
+                        .dateTime(contest.getCreatePeriod().until(contest.getSignPeriod(), ChronoUnit.DAYS) + 1)
+                        .topic(contest.getTopic())
+                        .category(contest.getCategory()).build();
                 contestLists.add(dto);
             }
         }
@@ -111,14 +109,13 @@ public class ContestService {
         List<ContestList> contestLists = new ArrayList<>();
 
         for (Contest contest : contests) {
-            if (contest.getSignPeriod().getDayOfMonth() + contest.getSignPeriod().getMonthValue() == date) {
-                ContestList dto = new ContestList(
-                        contest.getTitle(),
-                        contest.getPeriod(),
-                        contest.getCreatePeriod().until(contest.getSignPeriod(), ChronoUnit.DAYS) + 1,
-                        contest.getTopic(),
-                        contest.getCategory()
-                );
+            if (contest.getSignPeriod().getYear() + contest.getSignPeriod().getDayOfMonth() + contest.getSignPeriod().getMonthValue() == date) {
+                ContestList dto = ContestList.builder()
+                        .title(contest.getTitle())
+                        .period(contest.getPeriod())
+                        .dateTime(contest.getCreatePeriod().until(contest.getSignPeriod(), ChronoUnit.DAYS) + 1)
+                        .topic(contest.getTopic())
+                        .category(contest.getCategory()).build();
                 contestLists.add(dto);
             }
         }
