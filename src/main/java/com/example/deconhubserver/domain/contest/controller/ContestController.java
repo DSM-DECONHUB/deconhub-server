@@ -40,15 +40,15 @@ public class ContestController {
     }
 
     @Operation(summary = "대회 상세보기")
-    @GetMapping("/list/detail/{id}")
-    public ContestResponse contestDetail(@PathVariable Long id){
-        return contestService.contestDetail(id);
+    @GetMapping("/list/detail/{contestId}")
+    public ContestResponse contestDetail(@PathVariable Long contestId){
+        return contestService.contestDetail(contestId);
     }
 
     @Operation(summary = "대회 삭제")
-    @DeleteMapping("/del/{id}")
-    public void delContest(@PathVariable Long id){
-        contestService.delContest(id);
+    @DeleteMapping("/delete/{contestId}")
+    public void delContest(@PathVariable Long contestId){
+        contestService.delContest(contestId);
     }
 
     @Operation(summary = "대회 생성")
@@ -59,8 +59,8 @@ public class ContestController {
     }
 
     @Operation(summary = "대회 수정")
-    @PutMapping("/set/{id}")
-    public void setContest(@PathVariable Long id, @RequestBody ContestRequest request){
-        contestService.setContest(id, request);
+    @PutMapping("/modify/{contestId}")
+    public void setContest(@PathVariable Long contestId, @RequestBody ContestRequest request){
+        contestService.setContest(contestId, request);
     }
 }
