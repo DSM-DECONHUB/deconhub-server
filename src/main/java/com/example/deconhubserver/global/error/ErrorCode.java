@@ -22,7 +22,7 @@ public enum ErrorCode {
     INVALID_IMAGE_EXTENSION(401, "Invalid Image Extension"),
 
     JWT_EXPIRED(401, "Jwt Expired"),
-    JWT_INVALID(401, "Jwt Invalid"),
+    JWT_INVALID(401, "Jwt Invalid");
 
     private final int status;
     private final String message;
