@@ -1,10 +1,9 @@
-package com.example.deconhubserver.global.mail.service;
+package com.example.deconhubserver.infrastucture.mail.service;
 
 import com.example.deconhubserver.domain.user.entity.User;
-import com.example.deconhubserver.domain.user.exception.EmailNotFoundException;
 import com.example.deconhubserver.domain.user.facade.UserFacade;
 import com.example.deconhubserver.domain.user.repository.UserRepository;
-import com.example.deconhubserver.global.mail.dto.MailRequest;
+import com.example.deconhubserver.infrastucture.mail.dto.MailRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
