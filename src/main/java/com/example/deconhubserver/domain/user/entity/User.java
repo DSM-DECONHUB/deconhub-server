@@ -1,5 +1,6 @@
 package com.example.deconhubserver.domain.user.entity;
 
+import com.example.deconhubserver.domain.contest.entity.Contest;
 import com.example.deconhubserver.domain.user.enums.Role;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -37,6 +39,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Contest> contests;
 
     @Builder
     public User(String accountId, String email, String password) {

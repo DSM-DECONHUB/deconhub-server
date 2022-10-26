@@ -32,8 +32,8 @@ public class UserService {
             throw UserAlreadyExistsException.EXCEPTION;
         }
 
-        if(!request.getPassword().equals(request.getPasswordValid())){
-             throw PasswordMissMatchedException.EXCEPTION;
+        if (!request.getPassword().equals(request.getPasswordValid())) {
+            throw PasswordMissMatchedException.EXCEPTION;
         }
 
         User user = new User(
@@ -58,7 +58,7 @@ public class UserService {
 
     // 이메일 코드 보낼때
     @Transactional
-    public void lostPassword(MailRequest mailRequest)throws Exception {
+    public void lostPassword(MailRequest mailRequest) throws Exception {
 
         User user = userFacade.getUserByEmail(mailRequest.getEmail());
 
