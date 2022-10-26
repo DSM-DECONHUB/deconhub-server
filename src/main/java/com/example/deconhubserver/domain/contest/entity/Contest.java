@@ -66,7 +66,7 @@ public class Contest {
         this.place = place;
         this.createPeriod = LocalDateTime.now();
         this.signPeriod = signPeriod;
-        this.sponsor = sponsor.replaceAll(",","");
+        this.sponsor = sponsor.replace(",","");
         this.siteAddress = siteAddress;
         this.signCondition = signCondition;
         this.signWay = signWay;
@@ -82,7 +82,7 @@ public class Contest {
             this.period = request.getPeriod();
             this.place = request.getPlace();
             this.signPeriod = request.getSignPeriod();
-            this.sponsor = request.getSponsor().replaceAll(",","");
+            this.sponsor = request.getSponsor().replace(",","");
             this.siteAddress = request.getSiteAddress();
             this.signCondition = request.getSignCondition();
             this.signWay = request.getSignWay();
