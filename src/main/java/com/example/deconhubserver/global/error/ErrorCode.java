@@ -17,6 +17,7 @@ public enum ErrorCode {
     ROLE_NOT_FOUND(404,"Role Not Found"),
     EMAIL_NOT_FOUND(404, "Email Not Found"),
     CODE_NOT_FOUND(404, "Code Not Found"),
+    CONTEST_NOT_FOUND(404, "Contest Not Found"),
     QUESTION_NOT_FOUND(404, "Question Not Found"),
     PASSWORD_MISS_MATCHED(409, "Password Miss Match"),
 
