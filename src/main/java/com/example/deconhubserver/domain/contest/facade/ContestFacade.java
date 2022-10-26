@@ -13,7 +13,6 @@ import java.util.List;
 @Component
 public class ContestFacade {
     private final ContestRepository contestRepository;
-
     public Contest findById(Long id) {
 
         return contestRepository.findById(id)

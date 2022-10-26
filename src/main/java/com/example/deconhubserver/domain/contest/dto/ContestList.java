@@ -18,5 +18,4 @@ public class ContestList {
 
     private ContestCategory category; // 대회 카테고리
 
-
 }
