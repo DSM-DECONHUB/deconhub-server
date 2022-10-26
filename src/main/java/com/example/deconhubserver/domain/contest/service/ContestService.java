@@ -145,7 +145,6 @@ public class ContestService {
 
     private void userMatch(Contest contest){
         if (contest.getUser().getAccountId().equals(userFacade.getCurrentUser().getAccountId()) || userFacade.getCurrentUser().getRole() == Role.ADMIN){
-            ;
         }else throw UserMissMatchedException.EXCEPTION;
     }
 }
