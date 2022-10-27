@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="475aed15-b934-4339-b099-6f9978502e44" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/image/controller/ImageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/image/controller/ImageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/image/service/ImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/image/service/ImageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/infrastucture/s3/ImageUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/infrastucture/s3/facade/ImageFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/infrastucture/s3/facade/ImageFacade.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +86,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelOrder2" value="2" />
@@ -102,6 +107,26 @@
     <configuration name="DeconhubServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="deconhub-server.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.deconhubserver.DeconhubServerApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SHORTEN_COMMAND_LINE" value="NONE" />
+      <envs>
+        <env name="DB_URL" value="jdbc:mysql://localhost:3306/dc?serverTimezone=UTC&amp;characterEncoding=UTF-8" />
+        <env name="DB_USERNAME" value="root" />
+        <env name="DB_PASSWORD" value="1928" />
+        <env name="REDIS_HOST" value="localhost" />
+        <env name="REDIS_PORT" value="6379" />
+        <env name="MAIL_HOST" value="smtp.gmail.com" />
+        <env name="MAIL_POST" value="587" />
+        <env name="MAIL_USERNAME" value="hoyoung7827@gmail.com" />
+        <env name="MAIL_PASSWORD" value="idbykkbfrmmzaabz" />
+        <env name="JWT_KEY" value="dehubcon" />
+        <env name="ACCESSTOKEN_LIVE" value="3600000" />
+        <env name="REFRESHTOKEN_LIVE" value="604800000" />
+        <env name="S3_ACCESS_KEY" value="AKIAZQEZWHQZC7DNUIAB" />
+        <env name="S3_SECRET_KEY" value="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" />
+        <env name="S3_BUCKET" value="kimiljeong-bucket" />
+        <env name="S3_REGION" value="ap-northeast-2" />
+      </envs>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -122,6 +147,7 @@
       <workItem from="1665407748115" duration="8403000" />
       <workItem from="1666262489694" duration="125000" />
       <workItem from="1666271137399" duration="66566000" />
+      <workItem from="1666834152589" duration="1231000" />
     </task>
     <servers />
   </component>
