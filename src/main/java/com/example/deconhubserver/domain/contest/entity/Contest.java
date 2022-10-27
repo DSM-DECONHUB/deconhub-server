@@ -2,6 +2,7 @@ package com.example.deconhubserver.domain.contest.entity;
 
 import com.example.deconhubserver.domain.contest.dto.ContestRequest;
 import com.example.deconhubserver.domain.contest.enums.ContestCategory;
+import com.example.deconhubserver.domain.question.entity.Question;
 import com.example.deconhubserver.domain.user.entity.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AccessLevel;
@@ -12,6 +13,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -54,6 +56,9 @@ public class Contest {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @OneToMany(mappedBy = "contest", cascade = CascadeType.REMOVE)
+    private List<Question> questions;
 
     @Enumerated(EnumType.STRING)
     private ContestCategory category; // 대회 카테고리
