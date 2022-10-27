@@ -5,6 +5,7 @@ import com.example.deconhubserver.domain.question.dto.QuestionRequest;
 import com.example.deconhubserver.domain.question.dto.QuestionResponse;
 import com.example.deconhubserver.domain.question.entity.Question;
 import com.example.deconhubserver.domain.question.facade.QuestionFacade;
+import com.example.deconhubserver.domain.question.repository.QuestionRepository;
 import com.example.deconhubserver.domain.user.entity.User;
 import com.example.deconhubserver.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class QuestionService {
     private final QuestionFacade questionFacade;
+    private final QuestionRepository questionRepository;
     private final UserFacade userFacade;
 
     @Transactional
@@ -28,6 +30,7 @@ public class QuestionService {
                 user,
                 request.getTitle()
         );
+        questionRepository.save(question);
     }
 
     @Transactional(readOnly = true)
