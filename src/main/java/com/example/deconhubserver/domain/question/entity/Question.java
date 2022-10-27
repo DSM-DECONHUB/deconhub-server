@@ -1,5 +1,6 @@
 package com.example.deconhubserver.domain.question.entity;
 
+import com.example.deconhubserver.domain.contest.entity.Contest;
 import com.example.deconhubserver.domain.user.entity.User;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -23,6 +24,10 @@ public class Question {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "contest_id",nullable = false)
+    private Contest contest;
+
     private String title;
 
     private String content;
@@ -36,9 +41,10 @@ public class Question {
     }
 
     @Builder
-    public Question(User user, String title){
+    public Question(Contest contest,User user, String title){
         this.user = user;
         this.title = title;
+        this.contest = contest;
     }
 
 }
