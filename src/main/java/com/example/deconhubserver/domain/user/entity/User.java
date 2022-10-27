@@ -1,6 +1,7 @@
 package com.example.deconhubserver.domain.user.entity;
 
 import com.example.deconhubserver.domain.contest.entity.Contest;
+import com.example.deconhubserver.domain.question.entity.Question;
 import com.example.deconhubserver.domain.user.enums.Role;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -42,6 +43,9 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Contest> contests;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Question> questions;
 
     @Builder
     public User(String accountId, String email, String password) {
