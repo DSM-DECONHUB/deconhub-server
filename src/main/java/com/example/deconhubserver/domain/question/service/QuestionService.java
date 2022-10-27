@@ -1,6 +1,7 @@
 package com.example.deconhubserver.domain.question.service;
 
 import com.example.deconhubserver.domain.contest.entity.Contest;
+import com.example.deconhubserver.domain.contest.exception.UserMissMatchedException;
 import com.example.deconhubserver.domain.contest.facade.ContestFacade;
 import com.example.deconhubserver.domain.question.dto.QuestionList;
 import com.example.deconhubserver.domain.question.dto.QuestionRequest;
@@ -9,6 +10,7 @@ import com.example.deconhubserver.domain.question.entity.Question;
 import com.example.deconhubserver.domain.question.facade.QuestionFacade;
 import com.example.deconhubserver.domain.question.repository.QuestionRepository;
 import com.example.deconhubserver.domain.user.entity.User;
+import com.example.deconhubserver.domain.user.enums.Role;
 import com.example.deconhubserver.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -62,4 +64,25 @@ public class QuestionService {
                 .content(question.getContent())
                 .accountId(question.getUser().getAccountId()).build();
     }
+
+    @Transactional
+    public void modifyQuestion(Long id,QuestionRequest request){
+        Question question = questionFacade.findById(id);
+        User user = userFacade.getCurrentUser();
+        if (!question.getUser().getId().equals(user.getId())){
+            throw UserMissMatchedException.EXCEPTION;
+        }
+        question.setQuestion(request.getTitle());
+    }
+
+    @Transactional
+    public void questionAnswer(Long id, QuestionRequest request){
+        Question question = questionFacade.findById(id);
+        User user = userFacade.getCurrentUser();
+        if(!user.getRole().equals(Role.ADMIN)){
+            throw UserMissMatchedException.EXCEPTION;
+        }
+        question.answerQuestion(request.getContent());
+    }
+
 }
