@@ -15,14 +15,14 @@ import java.util.List;
 public class QuestionController {
     private final QuestionService questionService;
 
-    @PostMapping("/create")
-    public void questionCreate(@RequestBody QuestionRequest request){
-        questionService.createQuestion(request);
+    @PostMapping("/create/{contest-id}")
+    public void questionCreate(@RequestBody QuestionRequest request, @PathVariable(name = "contest-id") Long id){
+        questionService.createQuestion(request, id);
     }
 
-    @GetMapping("/list")
-    public List<QuestionList> questionList(){
-        return questionService.questionList();
+    @GetMapping("/list/{contest-id}")
+    public List<QuestionList> questionList(@PathVariable(name = "contest-id") Long id){
+        return questionService.questionList(id);
     }
 
     @GetMapping("/detail/{question-id}")
