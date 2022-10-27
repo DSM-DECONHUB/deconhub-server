@@ -32,11 +32,11 @@ public class Question {
 
     private String content;
 
-
-    @Builder
-    public Question(User user, String title, String content){
-        this.user = user;
+    public void setQuestion(String title){
         this.title = title;
+    }
+
+    public void answerQuestion(String content){
         this.content = content;
     }
 
