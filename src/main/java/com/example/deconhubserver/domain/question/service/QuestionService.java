@@ -1,5 +1,7 @@
 package com.example.deconhubserver.domain.question.service;
 
+import com.example.deconhubserver.domain.contest.entity.Contest;
+import com.example.deconhubserver.domain.contest.facade.ContestFacade;
 import com.example.deconhubserver.domain.question.dto.QuestionList;
 import com.example.deconhubserver.domain.question.dto.QuestionRequest;
 import com.example.deconhubserver.domain.question.dto.QuestionResponse;
@@ -22,11 +24,14 @@ public class QuestionService {
     private final QuestionFacade questionFacade;
     private final QuestionRepository questionRepository;
     private final UserFacade userFacade;
+    private final ContestFacade contestFacade;
 
     @Transactional
-    public void createQuestion(QuestionRequest request){
+    public void createQuestion(QuestionRequest request, Long id){
         User user = userFacade.getCurrentUser();
+        Contest contest = contestFacade.findById(id);
         Question question = new Question(
+                contest,
                 user,
                 request.getTitle()
         );
@@ -34,15 +39,17 @@ public class QuestionService {
     }
 
     @Transactional(readOnly = true)
-    public List<QuestionList> questionList(){
+    public List<QuestionList> questionList(Long id){
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
         List<Question> questions = questionFacade.findAllById(sort);
         List<QuestionList> questionLists = new ArrayList<>();
 
         for(Question question : questions){
-            QuestionList dto = QuestionList.builder()
-                    .title(question.getTitle()).build();
-            questionLists.add(dto);
+            if(question.getContest().getId().equals(id)){
+                QuestionList dto = QuestionList.builder()
+                        .title(question.getTitle()).build();
+                questionLists.add(dto);
+            }
         }
         return questionLists;
     }
