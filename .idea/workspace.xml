@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="475aed15-b934-4339-b099-6f9978502e44" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/question/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/question/controller/QuestionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/question/entity/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/question/entity/Question.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/question/service/QuestionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/question/service/QuestionService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +83,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="ExpandSpringBootSpringBootSettingsPanel" value="false" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelOrder2" value="2" />
@@ -147,6 +145,7 @@
       <workItem from="1666262489694" duration="125000" />
       <workItem from="1666271137399" duration="66566000" />
       <workItem from="1666834152589" duration="1231000" />
+      <workItem from="1666938705775" duration="16764000" />
     </task>
     <servers />
   </component>
