@@ -1,6 +1,8 @@
 package com.example.deconhubserver.domain.user.service;
 
 import com.example.deconhubserver.domain.auth.exception.PasswordMissMatchedException;
+import com.example.deconhubserver.domain.contest.dto.ContestList;
+import com.example.deconhubserver.domain.contest.entity.Contest;
 import com.example.deconhubserver.domain.user.dto.*;
 import com.example.deconhubserver.domain.user.entity.User;
 import com.example.deconhubserver.domain.user.exception.CodeNotFoundException;
@@ -13,6 +15,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -84,6 +90,7 @@ public class UserService {
         }
     }
 
+    // 자신의 정보 보기
     @Transactional(readOnly = true)
     public MyInfoResponse queryMyInfo() {
         User user = userFacade.getCurrentUser();
@@ -92,6 +99,31 @@ public class UserService {
                 .accountId(user.getAccountId())
                 .email(user.getEmail())
                 .build();
+    }
+
+    // 자신의 대회
+    @Transactional(readOnly = true)
+    public List<ContestList> attendContest() {
+        User user = userFacade.getCurrentUser();
+        List<Contest> contests = user.getContests();
+        List<ContestList> contestLists = new ArrayList<>();
+
+        for (Contest contest : contests) {
+            ContestList dto = ContestList.builder()
+                    .title(contest.getTitle())
+                    .period(contest.getPeriod())
+                    .dateTime(contest.getCreatePeriod().until(contest.getSignPeriod(), ChronoUnit.DAYS) + 1)
+                    .topic(contest.getTopic())
+                    .category(contest.getCategory()).build();
+            contestLists.add(dto);
+        }
+        return contestLists;
+    }
+
+    @Transactional
+    public void delUser() {
+        User user = userFacade.getCurrentUser();
+        userRepository.delete(user);
     }
 
 }
