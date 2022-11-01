@@ -102,7 +102,7 @@ public class UserService {
     }
 
     // 자신의 대회
-    @Transactional
+    @Transactional(readOnly = true)
     public List<ContestList> attendContest() {
         User user = userFacade.getCurrentUser();
         List<Contest> contests = user.getContests();
