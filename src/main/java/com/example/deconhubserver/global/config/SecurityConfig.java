@@ -42,8 +42,8 @@ public class SecurityConfig{
                 .antMatchers(HttpMethod.POST,"/user/login").permitAll()
                 .antMatchers(HttpMethod.POST,"/user/signup").permitAll()
                 .antMatchers(HttpMethod.GET, "/user/reissue").authenticated()
-                .antMatchers(HttpMethod.POST,"/user/lost/password").authenticated()
-                .antMatchers(HttpMethod.PATCH,"/user/lost/password").authenticated()
+                .antMatchers(HttpMethod.POST,"/user/lost/password").permitAll()
+                .antMatchers(HttpMethod.PATCH,"/user/lost/password").permitAll()
                 .antMatchers(HttpMethod.GET, "/user").authenticated()
 
                 .anyRequest().authenticated()
