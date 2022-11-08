@@ -90,6 +90,23 @@ public class UserService {
         }
     }
 
+    @Transactional
+    public void setPasswords(PasswordRequest request){
+        User user = userFacade.getCurrentUser();
+
+        if(!passwordEncoder.matches(request.getOriginalPassword(), user.getPassword())){
+            throw new IllegalStateException("원래 비밀번호가 맞지 않습니다.");
+        }
+
+        if(!request.getNewPassword().equals(request.getNewPasswordValid())){
+            throw new IllegalStateException("변경하는 비밀번호가 맞지 않습니다.");
+        }
+
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
+
+    }
+
     // 자신의 정보 보기
     @Transactional(readOnly = true)
     public MyInfoResponse queryMyInfo() {
