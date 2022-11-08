@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="475aed15-b934-4339-b099-6f9978502e44" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,17 +102,25 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RunManager">
     <configuration name="DeconhubServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="deconhub-server.main" />
+      <extension name="software.aws.toolkits.jetbrains.core.execution.JavaAwsConnectionExtension">
+        <option name="credential" />
+        <option name="region" />
+        <option name="useCurrentConnection" value="false" />
+      </extension>
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.deconhubserver.DeconhubServerApplication" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <envs>
-        <env name="DB_URL" value="jdbc:mysql://localhost:3306/dc?serverTimezone=UTC&amp;characterEncoding=UTF-8" />
+        <env name="DB_URL" value="jdbc:mysql://database-1.ctxcxnjslr2o.ap-northeast-2.rds.amazonaws.com/dc?serverTimezone=UTC&amp;characterEncoding=UTF-8" />
         <env name="DB_USERNAME" value="root" />
-        <env name="DB_PASSWORD" value="1928" />
-        <env name="REDIS_HOST" value="localhost" />
+        <env name="DB_PASSWORD" value="19288291" />
+        <env name="REDIS_HOST" value="54.180.109.55" />
         <env name="REDIS_PORT" value="6379" />
         <env name="MAIL_HOST" value="smtp.gmail.com" />
         <env name="MAIL_POST" value="587" />
@@ -148,6 +156,9 @@
       <workItem from="1666271137399" duration="66566000" />
       <workItem from="1666834152589" duration="1231000" />
       <workItem from="1666938705775" duration="28476000" />
+      <workItem from="1667442294354" duration="6806000" />
+      <workItem from="1667777564749" duration="1746000" />
+      <workItem from="1667780094485" duration="14030000" />
     </task>
     <servers />
   </component>
