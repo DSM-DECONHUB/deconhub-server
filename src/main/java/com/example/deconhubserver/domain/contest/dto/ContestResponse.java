@@ -16,7 +16,7 @@ public class ContestResponse {
 
     private final String place; // 대회 장소
 
-    private final Long dateTime; // 신청기간 결과
+    private final String dateTime; // 신청기간 결과
 
     private final String sponsor; // 대회 후원사
 
