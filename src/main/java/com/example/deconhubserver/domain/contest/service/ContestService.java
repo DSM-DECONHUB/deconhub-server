@@ -16,7 +16,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.temporal.ChronoUnit;
+import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +45,7 @@ public class ContestService {
                 request.getHistory(),
                 request.getTopic(),
                 request.getCategory(),
+                request.getLink(),
                 user
         );
 
@@ -74,7 +76,7 @@ public class ContestService {
             ContestList dto = ContestList.builder()
                     .title(contest.getTitle())
                     .period(contest.getPeriod())
-                    .dateTime(contest.getCreatePeriod().until(contest.getSignPeriod(), ChronoUnit.DAYS) + 1)
+                    .dateTime(betweenDate(contest.getSignPeriod(), 2))
                     .topic(contest.getTopic())
                     .category(contest.getCategory()).build();
             contestLists.add(dto);
@@ -94,7 +96,7 @@ public class ContestService {
                 ContestList dto = ContestList.builder()
                         .title(contest.getTitle())
                         .period(contest.getPeriod())
-                        .dateTime(contest.getCreatePeriod().until(contest.getSignPeriod(), ChronoUnit.DAYS) + 1)
+                        .dateTime(betweenDate(contest.getSignPeriod(), 2))
                         .topic(contest.getTopic())
                         .category(contest.getCategory()).build();
                 contestLists.add(dto);
@@ -114,7 +116,7 @@ public class ContestService {
                 ContestList dto = ContestList.builder()
                         .title(contest.getTitle())
                         .period(contest.getPeriod())
-                        .dateTime(contest.getCreatePeriod().until(contest.getSignPeriod(), ChronoUnit.DAYS) + 1)
+                        .dateTime(betweenDate(contest.getSignPeriod(), 2))
                         .topic(contest.getTopic())
                         .category(contest.getCategory()).build();
                 contestLists.add(dto);
@@ -124,7 +126,7 @@ public class ContestService {
     }
 
     @Transactional(readOnly = true) // 대회 상세보기
-    public ContestResponse contestDetail(Long contestId){
+    public ContestResponse contestDetail(Long contestId) {
         Contest contest = contestFacade.findById(contestId);
 
         return ContestResponse.builder()
@@ -132,7 +134,7 @@ public class ContestService {
                 .introduce(contest.getIntroduce())
                 .period(contest.getPeriod())
                 .place(contest.getPlace())
-                .dateTime(contest.getCreatePeriod().until(contest.getSignPeriod(), ChronoUnit.DAYS) + 1)
+                .dateTime(betweenDate(contest.getSignPeriod(), 1))
                 .sponsor(contest.getSponsor())
                 .siteAddress(contest.getSiteAddress())
                 .signCondition(contest.getSignCondition())
@@ -143,8 +145,68 @@ public class ContestService {
 
     }
 
-    private void userMatch(Contest contest){
-        if (contest.getUser().getAccountId().equals(userFacade.getCurrentUser().getAccountId()) || userFacade.getCurrentUser().getRole() == Role.ADMIN){
-        }else throw UserMissMatchedException.EXCEPTION;
+    // 자신의 대회
+    @Transactional(readOnly = true)
+    public List<ContestList> attendContest() {
+        User user = userFacade.getCurrentUser();
+        List<Contest> contests = user.getContests();
+        List<ContestList> contestLists = new ArrayList<>();
+
+        for (Contest contest : contests) {
+            ContestList dto = ContestList.builder()
+                    .title(contest.getTitle())
+                    .period(contest.getPeriod())
+                    .dateTime(betweenDate(contest.getSignPeriod(), 2))
+                    .topic(contest.getTopic())
+                    .category(contest.getCategory()).build();
+            contestLists.add(dto);
+        }
+        return contestLists;
+    }
+
+    // 특정 문자열을 필터를 통해 리스트로 나옴
+    @Transactional(readOnly = true)
+    public List<ContestList> contestSearch(String kda) {
+        List<Contest> contests = contestFacade.findAllUserBySearch(kda);
+        List<ContestList> contestLists = new ArrayList<>();
+
+        for (Contest contest : contests) {
+            ContestList dto = ContestList.builder()
+                    .title(contest.getTitle())
+                    .period(contest.getPeriod())
+                    .dateTime(betweenDate(contest.getSignPeriod(), 2))
+                    .topic(contest.getTopic())
+                    .category(contest.getCategory()).build();
+            contestLists.add(dto);
+
+        }
+        return contestLists;
+    }
+
+    @Transactional
+    public String signSite(Long contestId) {
+        Contest contest = contestFacade.findById(contestId);
+        return "redirect:" + contest.getLink();
+    }
+
+    private void userMatch(Contest contest) {
+        if (contest.getUser().getAccountId().equals(userFacade.getCurrentUser().getAccountId()) || userFacade.getCurrentUser().getRole() == Role.ADMIN) {
+        } else throw UserMissMatchedException.EXCEPTION;
+    }
+
+    // 시간, 날짜 차이 구하기
+    private String betweenDate(LocalDateTime dateTime, int number) {
+        LocalDateTime now = LocalDateTime.now();
+
+        Period period = Period.between(dateTime.toLocalDate(), now.toLocalDate());
+
+        switch (number) {
+            case 1:
+                return "신청 기간이 " + period.getDays() + "일 남았습니다.";
+            case 2:
+                return "D-" + period.getDays();
+            default:
+                throw new IllegalStateException("반환할 값이 없습니다..");
+        }
     }
 }
