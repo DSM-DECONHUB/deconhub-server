@@ -63,4 +63,16 @@ public class ContestController {
     public void setContest(@PathVariable Long contestId, @RequestBody ContestRequest request){
         contestService.setContest(contestId, request);
     }
+
+    @Operation(summary = "자신의 참가한 대회 보기")
+    @GetMapping("/my")
+    public List<ContestList> myContestList(){
+        return contestService.attendContest();
+    }
+
+    @Operation(summary = "대회 검색")
+    @GetMapping("/list/search")
+    public List<ContestList> searchContest(@RequestParam("value")String kda){
+        return contestService.contestSearch(kda);
+    }
 }
