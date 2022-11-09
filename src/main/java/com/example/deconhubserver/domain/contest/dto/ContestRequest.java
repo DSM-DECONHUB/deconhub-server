@@ -34,5 +34,7 @@ public class ContestRequest {
 
     private String topic; // 대회 주제
 
+    private String link; // 대회 링크
+
     private ContestCategory category; // 대회 카테고리
 }
