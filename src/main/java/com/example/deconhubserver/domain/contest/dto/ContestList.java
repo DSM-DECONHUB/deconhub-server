@@ -10,7 +10,7 @@ public class ContestList {
 
     private String period; // 대회기간
 
-    private Long dateTime; // 신청 기간 결과
+    private String dateTime; // 신청 기간 결과
 
     private String title; // 대회 제목
 
