@@ -8,5 +8,8 @@ import java.util.List;
 
 public interface ContestRepository extends JpaRepository<Contest, Long> {
     @Query(value = "select c from Contest c where c.title LIKE %:kda%")
-    List<Contest>findAllUserBySearch(String kda);
+    List<Contest>findAllUserByTitleSearch(String kda);
+
+    @Query(value = "select c from Contest c where c.category LIKE %:kda%")
+    List<Contest>findAllUserByCategorySearch(String kda);
 }
