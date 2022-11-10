@@ -23,8 +23,11 @@ public class ContestFacade {
         return contestRepository.findAll(sort);
     }
 
-    public List<Contest> findAllUserBySearch(String kda){
-        return contestRepository.findAllUserBySearch(kda);
+    public List<Contest> findAllUserByTitleSearch(String kda){
+        return contestRepository.findAllUserByTitleSearch(kda);
     }
 
+    public List<Contest> findAllUserByCategorySearch(String category){
+        return contestRepository.findAllUserByCategorySearch(category);
+    }
 }
