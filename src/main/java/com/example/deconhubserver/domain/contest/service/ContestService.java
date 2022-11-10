@@ -4,7 +4,6 @@ import com.example.deconhubserver.domain.contest.dto.ContestList;
 import com.example.deconhubserver.domain.contest.dto.ContestRequest;
 import com.example.deconhubserver.domain.contest.dto.ContestResponse;
 import com.example.deconhubserver.domain.contest.entity.Contest;
-import com.example.deconhubserver.domain.contest.enums.ContestCategory;
 import com.example.deconhubserver.domain.contest.exception.UserMissMatchedException;
 import com.example.deconhubserver.domain.contest.facade.ContestFacade;
 import com.example.deconhubserver.domain.contest.repository.ContestRepository;
@@ -86,13 +85,11 @@ public class ContestService {
     }
 
     @Transactional(readOnly = true) // 대회 필터 보기
-    public List<ContestList> categoryList(ContestCategory category) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "id");
-        List<Contest> contests = contestFacade.findAllById(sort);
+    public List<ContestList> categoryList(String category) {
+        List<Contest> contests = contestFacade.findAllUserByCategorySearch(category);
         List<ContestList> contestLists = new ArrayList<>();
 
         for (Contest contest : contests) {
-            if (contest.getCategory().equals(category)) {
                 ContestList dto = ContestList.builder()
                         .title(contest.getTitle())
                         .period(contest.getPeriod())
@@ -100,7 +97,6 @@ public class ContestService {
                         .topic(contest.getTopic())
                         .category(contest.getCategory()).build();
                 contestLists.add(dto);
-            }
         }
         return contestLists;
     }
@@ -167,7 +163,7 @@ public class ContestService {
     // 특정 문자열을 필터를 통해 리스트로 나옴
     @Transactional(readOnly = true)
     public List<ContestList> contestSearch(String kda) {
-        List<Contest> contests = contestFacade.findAllUserBySearch(kda);
+        List<Contest> contests = contestFacade.findAllUserByTitleSearch(kda);
         List<ContestList> contestLists = new ArrayList<>();
 
         for (Contest contest : contests) {
