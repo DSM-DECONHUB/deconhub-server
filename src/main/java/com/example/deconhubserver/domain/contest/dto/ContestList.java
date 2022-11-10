@@ -1,6 +1,5 @@
 package com.example.deconhubserver.domain.contest.dto;
 
-import com.example.deconhubserver.domain.contest.enums.ContestCategory;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -16,6 +15,6 @@ public class ContestList {
 
     private String topic; // 대회 주제
 
-    private ContestCategory category; // 대회 카테고리
+    private String category; // 대회 카테고리
 
 }
