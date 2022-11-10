@@ -1,7 +1,6 @@
 package com.example.deconhubserver.domain.contest.entity;
 
 import com.example.deconhubserver.domain.contest.dto.ContestRequest;
-import com.example.deconhubserver.domain.contest.enums.ContestCategory;
 import com.example.deconhubserver.domain.question.entity.Question;
 import com.example.deconhubserver.domain.user.entity.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -58,11 +57,10 @@ public class Contest {
     @OneToMany(mappedBy = "contest", cascade = CascadeType.REMOVE)
     private List<Question> questions;
 
-    @Enumerated(EnumType.STRING)
-    private ContestCategory category; // 대회 카테고리
+    private String category; // 대회 카테고리
 
     @Builder
-    public Contest(String title, String introduce, String period, String place, LocalDateTime signPeriod, String sponsor, String siteAddress, String signCondition, String signWay, String history, String topic, ContestCategory category, String link, User user){
+    public Contest(String title, String introduce, String period, String place, LocalDateTime signPeriod, String sponsor, String siteAddress, String signCondition, String signWay, String history, String topic, String category, String link, User user){
         this.title = title;
         this.introduce = introduce;
         this.period = period;
