@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.security.SecureRandom;
@@ -40,11 +39,11 @@ public class MailService {
     public void mailSend(MailRequest mailRequest, String accountId) throws Exception {
         MimeMessage message = javaMailSender.createMimeMessage();
 
-        message.addRecipients(MimeMessage.RecipientType.TO,mailRequest.getEmail()); // 보내는 대상
-        message.setSubject("'DeConHub' 인증 코드" );
+        message.addRecipients(MimeMessage.RecipientType.TO, mailRequest.getEmail()); // 보내는 대상
+        message.setSubject("'DeConHub' 인증 코드");
 
-        String msgg="";
-        msgg+= "<div class=\"\"><div class=\"aHl\"></div><div id=\":2j\" tabindex=\"-1\"></div><div id=\":2q\" class=\"ii gt\" jslog=\"20277; u014N:xr6bB; 4:W251bGwsbnVsbCxbXV0.\"><div id=\":1l\" class=\"a3s aiL \"><div class=\"adM\">\n" +
+        String msgg = "";
+        msgg += "<div class=\"\"><div class=\"aHl\"></div><div id=\":2j\" tabindex=\"-1\"></div><div id=\":2q\" class=\"ii gt\" jslog=\"20277; u014N:xr6bB; 4:W251bGwsbnVsbCxbXV0.\"><div id=\":1l\" class=\"a3s aiL \"><div class=\"adM\">\n" +
                 "\n" +
                 "\t\n" +
                 "\n" +
@@ -80,7 +79,7 @@ public class MailService {
                 "\t\t\t\t\t\t\t\t\t\t<td width=\"40\" style=\"color:#999\"></td>\n" +
                 "\t\t\t\t\t\t\t\t\t\t<td style=\"color:#999\">\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t<p style=\"margin:20px 0;padding:0\"><strong style=\"color:#333\">안녕하세요. <em style=\"color:#6C1FD3;font-style:normal\">디콘허브</em> 입니다.</strong></p>\n" +
-                "\t\t\t\t\t\t\t\t\t\t\t<p style=\"margin:20px 0;padding:0\">" + accountId +"님이 신청하신 서비스는 본인확인을 위해 <span class=\"il\">인증</span><span class=\"il\">번호</span> 확인이 필요합니다. <br>아래의 <span class=\"il\">인증</span><span class=\"il\">번호</span>를 복사하신 후 이메일 <span class=\"il\">인증</span><span class=\"il\">번호</span> 입력란에 입력해 주시기 바랍니다. <br><span class=\"il\"></p>\n" +
+                "\t\t\t\t\t\t\t\t\t\t\t<p style=\"margin:20px 0;padding:0\">" + accountId + "님이 신청하신 서비스는 본인확인을 위해 <span class=\"il\">인증</span><span class=\"il\">번호</span> 확인이 필요합니다. <br>아래의 <span class=\"il\">인증</span><span class=\"il\">번호</span>를 복사하신 후 이메일 <span class=\"il\">인증</span><span class=\"il\">번호</span> 입력란에 입력해 주시기 바랍니다. <br><span class=\"il\"></p>\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t<div style=\"background-color:#f7f7f7;border-bottom:1px solid #e7e7e7;border-top:1px solid #e7e7e7;color:#666;font-size:16px;padding:35px;text-align:center\">\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t\t<span><strong style=\"color:#000;font-weight:bold;font-size:30px;\">" + randomMessage(accountId) + "</strong></span>\n" +
                 "\t\t\t\t\t\t\t\t\t\t\t</div>\n" +
@@ -129,7 +128,7 @@ public class MailService {
                 "</div></div></div><div id=\":2f\" class=\"ii gt\" style=\"display:none\"><div id=\":2e\" class=\"a3s aiL \"></div></div><div class=\"hi\"></div></div>";
 
         message.setText(msgg, "utf-8", "html");//내용
-        message.setFrom(new InternetAddress("deconhub123@gmail.com","DeConHub"));//보내는 사람
+        message.setFrom(new InternetAddress("deconhub123@gmail.com", "DeConHub"));//보내는 사람
 
         javaMailSender.send(message);
 
