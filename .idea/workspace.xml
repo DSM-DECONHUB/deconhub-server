@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="475aed15-b934-4339-b099-6f9978502e44" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/infrastucture/mail/service/MailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/infrastucture/mail/service/MailService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/controller/ContestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/controller/ContestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/dto/ContestList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/dto/ContestList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/dto/ContestRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/dto/ContestRequest.java" afterDir="false" />
@@ -131,8 +132,8 @@
         <env name="REDIS_PORT" value="6379" />
         <env name="MAIL_HOST" value="smtp.gmail.com" />
         <env name="MAIL_POST" value="587" />
-        <env name="MAIL_USERNAME" value="hoyoung7827@gmail.com" />
-        <env name="MAIL_PASSWORD" value="idbykkbfrmmzaabz" />
+        <env name="MAIL_USERNAME" value="deconhub123@gmail.com" />
+        <env name="MAIL_PASSWORD" value="jreuqlebgjqcnvpx" />
         <env name="JWT_KEY" value="dehubcon" />
         <env name="ACCESSTOKEN_LIVE" value="3600000" />
         <env name="REFRESHTOKEN_LIVE" value="604800000" />
