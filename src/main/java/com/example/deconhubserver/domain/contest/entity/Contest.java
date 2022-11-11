@@ -1,7 +1,6 @@
 package com.example.deconhubserver.domain.contest.entity;
 
 import com.example.deconhubserver.domain.contest.dto.ContestRequest;
-import com.example.deconhubserver.domain.contest.enums.ContestCategory;
 import com.example.deconhubserver.domain.question.entity.Question;
 import com.example.deconhubserver.domain.user.entity.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -37,10 +36,6 @@ public class Contest {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private LocalDateTime signPeriod; // 신청기간
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-    private LocalDateTime createPeriod; // 게시글 만들어 진 시간
-
     private String sponsor; // 대회 후원사
 
     private String siteAddress; // 대회 사이트
@@ -53,6 +48,8 @@ public class Contest {
 
     private String topic; // 대회 주제
 
+    private String link; // 대회 링크
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -60,16 +57,14 @@ public class Contest {
     @OneToMany(mappedBy = "contest", cascade = CascadeType.REMOVE)
     private List<Question> questions;
 
-    @Enumerated(EnumType.STRING)
-    private ContestCategory category; // 대회 카테고리
+    private String category; // 대회 카테고리
 
     @Builder
-    public Contest(String title, String introduce, String period, String place, LocalDateTime signPeriod, String sponsor, String siteAddress, String signCondition, String signWay, String history, String topic, ContestCategory category, User user){
+    public Contest(String title, String introduce, String period, String place, LocalDateTime signPeriod, String sponsor, String siteAddress, String signCondition, String signWay, String history, String topic, String category, String link, User user){
         this.title = title;
         this.introduce = introduce;
         this.period = period;
         this.place = place;
-        this.createPeriod = LocalDateTime.now();
         this.signPeriod = signPeriod;
         this.sponsor = sponsor.replace(",","");
         this.siteAddress = siteAddress;
@@ -78,6 +73,7 @@ public class Contest {
         this.history = history;
         this.topic = topic;
         this.category = category;
+        this.link = link;
         this.user = user;
     }
 
@@ -94,5 +90,6 @@ public class Contest {
             this.history = request.getHistory();
             this.topic = request.getTopic();
             this.category = request.getCategory();
+            this.link = request.getLink();
     }
 }

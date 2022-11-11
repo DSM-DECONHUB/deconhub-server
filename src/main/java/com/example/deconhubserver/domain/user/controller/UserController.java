@@ -1,6 +1,5 @@
 package com.example.deconhubserver.domain.user.controller;
 
-import com.example.deconhubserver.domain.contest.dto.ContestList;
 import com.example.deconhubserver.domain.user.dto.*;
 import com.example.deconhubserver.domain.user.service.UserService;
 import com.example.deconhubserver.infrastucture.mail.dto.MailRequest;
@@ -15,7 +14,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Tag(name = "user", description = "유저 관련 API 입니다.")
 @RestController
@@ -72,12 +70,6 @@ public class UserController {
     @DeleteMapping("/leave")
     public void delUser(){
         userService.delUser();
-    }
-
-    @Operation(summary = "자신의 참가한 대회 보기")
-    @GetMapping("/mycontest")
-    public List<ContestList> myContestList(){
-        return userService.attendContest();
     }
 
 }
