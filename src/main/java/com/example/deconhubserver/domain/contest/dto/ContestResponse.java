@@ -1,6 +1,5 @@
 package com.example.deconhubserver.domain.contest.dto;
 
-import com.example.deconhubserver.domain.contest.enums.ContestCategory;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -16,7 +15,7 @@ public class ContestResponse {
 
     private final String place; // 대회 장소
 
-    private final Long dateTime; // 신청기간 결과
+    private final String dateTime; // 신청기간 결과
 
     private final String sponsor; // 대회 후원사
 
@@ -30,6 +29,6 @@ public class ContestResponse {
 
     private final String topic; // 대회 주제
 
-    private final ContestCategory category; // 대회 카테고리
+    private final String category; // 대회 카테고리
 
 }

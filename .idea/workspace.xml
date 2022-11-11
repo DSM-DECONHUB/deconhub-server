@@ -7,6 +7,15 @@
     <list default="true" id="475aed15-b934-4339-b099-6f9978502e44" name="Changes" comment="Changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/infrastucture/mail/service/MailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/infrastucture/mail/service/MailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/controller/ContestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/controller/ContestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/dto/ContestList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/dto/ContestList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/dto/ContestRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/dto/ContestRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/dto/ContestResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/dto/ContestResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/entity/Contest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/entity/Contest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/facade/ContestFacade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/facade/ContestFacade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/repository/ContestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/repository/ContestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/service/ContestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/deconhubserver/domain/contest/service/ContestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +166,8 @@
       <workItem from="1666938705775" duration="28476000" />
       <workItem from="1667442294354" duration="6806000" />
       <workItem from="1667777564749" duration="1746000" />
-      <workItem from="1667780094485" duration="14030000" />
+      <workItem from="1667780094485" duration="21376000" />
+      <workItem from="1667950505205" duration="20897000" />
     </task>
     <servers />
   </component>

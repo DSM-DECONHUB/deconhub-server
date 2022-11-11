@@ -21,7 +21,13 @@ public class ContestFacade {
 
     public List<Contest> findAllById(Sort sort) {
         return contestRepository.findAll(sort);
-
     }
 
+    public List<Contest> findAllUserByTitleSearch(String kda){
+        return contestRepository.findAllUserByTitleSearch(kda);
+    }
+
+    public List<Contest> findAllUserByCategorySearch(String category){
+        return contestRepository.findAllUserByCategorySearch(category);
+    }
 }

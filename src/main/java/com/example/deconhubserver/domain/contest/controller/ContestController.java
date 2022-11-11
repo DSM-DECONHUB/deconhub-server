@@ -3,7 +3,6 @@ package com.example.deconhubserver.domain.contest.controller;
 import com.example.deconhubserver.domain.contest.dto.ContestList;
 import com.example.deconhubserver.domain.contest.dto.ContestRequest;
 import com.example.deconhubserver.domain.contest.dto.ContestResponse;
-import com.example.deconhubserver.domain.contest.enums.ContestCategory;
 import com.example.deconhubserver.domain.contest.service.ContestService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,7 +28,7 @@ public class ContestController {
 
     @Operation(summary = "대회 카테고리 필터보기")
     @GetMapping("/list/category")
-    public List<ContestList> contestCategory(@RequestParam("value")ContestCategory category){
+    public List<ContestList> contestCategory(@RequestParam("value")String category){
         return contestService.categoryList(category);
     }
 
@@ -62,5 +61,17 @@ public class ContestController {
     @PutMapping("/modify/{contestId}")
     public void setContest(@PathVariable Long contestId, @RequestBody ContestRequest request){
         contestService.setContest(contestId, request);
+    }
+
+    @Operation(summary = "자신의 참가한 대회 보기")
+    @GetMapping("/my")
+    public List<ContestList> myContestList(){
+        return contestService.attendContest();
+    }
+
+    @Operation(summary = "대회 검색")
+    @GetMapping("/list/search")
+    public List<ContestList> searchContest(@RequestParam("value")String kda){
+        return contestService.contestSearch(kda);
     }
 }
