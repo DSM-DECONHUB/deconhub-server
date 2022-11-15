@@ -1,7 +1,8 @@
 package com.example.deconhubserver.domain.question.controller;
 
+import com.example.deconhubserver.domain.question.dto.QuestionContentRequest;
 import com.example.deconhubserver.domain.question.dto.QuestionList;
-import com.example.deconhubserver.domain.question.dto.QuestionRequest;
+import com.example.deconhubserver.domain.question.dto.QuestionTitleRequest;
 import com.example.deconhubserver.domain.question.dto.QuestionResponse;
 import com.example.deconhubserver.domain.question.service.QuestionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,7 +23,7 @@ public class QuestionController {
     @Operation(summary = "Q&A 생성")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/create/{contest-id}")
-    public void questionCreate(@RequestBody QuestionRequest request, @PathVariable(name = "contest-id") Long id){
+    public void questionCreate(@RequestBody QuestionTitleRequest request, @PathVariable(name = "contest-id") Long id){
         questionService.createQuestion(request, id);
     }
 
@@ -39,12 +40,12 @@ public class QuestionController {
     }
 
     @PatchMapping("/modify/{question-id}")
-    public void questionModify(@PathVariable(name = "question-id") Long id, @RequestBody QuestionRequest request){
+    public void questionModify(@PathVariable(name = "question-id") Long id, @RequestBody QuestionTitleRequest request){
         questionService.modifyQuestion(id, request);
     }
 
     @PatchMapping("/answer/{question-id}")
-    public void answerQuestion(@PathVariable(name = "question-id") Long id, @RequestBody QuestionRequest request){
+    public void answerQuestion(@PathVariable(name = "question-id") Long id, @RequestBody QuestionContentRequest request){
         questionService.questionAnswer(id, request);
     }
 
