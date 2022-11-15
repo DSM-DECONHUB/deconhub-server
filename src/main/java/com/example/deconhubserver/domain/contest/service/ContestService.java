@@ -3,6 +3,7 @@ package com.example.deconhubserver.domain.contest.service;
 import com.example.deconhubserver.domain.contest.dto.ContestList;
 import com.example.deconhubserver.domain.contest.dto.ContestRequest;
 import com.example.deconhubserver.domain.contest.dto.ContestResponse;
+import com.example.deconhubserver.domain.contest.dto.ContestResponseList;
 import com.example.deconhubserver.domain.contest.entity.Contest;
 import com.example.deconhubserver.domain.contest.exception.UserMissMatchedException;
 import com.example.deconhubserver.domain.contest.facade.ContestFacade;
@@ -41,10 +42,7 @@ public class ContestService {
                 request.getSiteAddress(),
                 request.getSignCondition(),
                 request.getSignWay(),
-                request.getHistory(),
-                request.getTopic(),
                 request.getCategory(),
-                request.getLink(),
                 user
         );
 
@@ -66,7 +64,7 @@ public class ContestService {
     }
 
     @Transactional(readOnly = true) // 대회 전체보기
-    public List<ContestList> contestList() {
+    public ContestResponseList contestList() {
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
         List<Contest> contests = contestFacade.findAllById(sort);
         List<ContestList> contestLists = new ArrayList<>();
@@ -76,11 +74,10 @@ public class ContestService {
                     .title(contest.getTitle())
                     .period(contest.getPeriod())
                     .dateTime(betweenDate(contest.getSignPeriod(), 2))
-                    .topic(contest.getTopic())
                     .category(contest.getCategory()).build();
             contestLists.add(dto);
         }
-        return contestLists;
+        return new ContestResponseList(contestLists);
 
     }
 
@@ -94,7 +91,6 @@ public class ContestService {
                         .title(contest.getTitle())
                         .period(contest.getPeriod())
                         .dateTime(betweenDate(contest.getSignPeriod(), 2))
-                        .topic(contest.getTopic())
                         .category(contest.getCategory()).build();
                 contestLists.add(dto);
         }
@@ -113,7 +109,6 @@ public class ContestService {
                         .title(contest.getTitle())
                         .period(contest.getPeriod())
                         .dateTime(betweenDate(contest.getSignPeriod(), 2))
-                        .topic(contest.getTopic())
                         .category(contest.getCategory()).build();
                 contestLists.add(dto);
             }
@@ -135,8 +130,6 @@ public class ContestService {
                 .siteAddress(contest.getSiteAddress())
                 .signCondition(contest.getSignCondition())
                 .signWay(contest.getSignWay())
-                .history(contest.getHistory())
-                .topic(contest.getTopic())
                 .category(contest.getCategory()).build();
 
     }
@@ -153,7 +146,6 @@ public class ContestService {
                     .title(contest.getTitle())
                     .period(contest.getPeriod())
                     .dateTime(betweenDate(contest.getSignPeriod(), 2))
-                    .topic(contest.getTopic())
                     .category(contest.getCategory()).build();
             contestLists.add(dto);
         }
@@ -171,7 +163,6 @@ public class ContestService {
                     .title(contest.getTitle())
                     .period(contest.getPeriod())
                     .dateTime(betweenDate(contest.getSignPeriod(), 2))
-                    .topic(contest.getTopic())
                     .category(contest.getCategory()).build();
             contestLists.add(dto);
 
@@ -182,7 +173,7 @@ public class ContestService {
     @Transactional
     public String signSite(Long contestId) {
         Contest contest = contestFacade.findById(contestId);
-        return "redirect:" + contest.getLink();
+        return "redirect:" + contest.getSiteAddress();
     }
 
     private void userMatch(Contest contest) {
