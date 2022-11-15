@@ -1,9 +1,6 @@
 package com.example.deconhubserver.domain.question.controller;
 
-import com.example.deconhubserver.domain.question.dto.QuestionContentRequest;
-import com.example.deconhubserver.domain.question.dto.QuestionList;
-import com.example.deconhubserver.domain.question.dto.QuestionTitleRequest;
-import com.example.deconhubserver.domain.question.dto.QuestionResponse;
+import com.example.deconhubserver.domain.question.dto.*;
 import com.example.deconhubserver.domain.question.service.QuestionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -37,6 +34,12 @@ public class QuestionController {
     @GetMapping("/detail/{question-id}")
     public QuestionResponse questionDetail(@PathVariable(name = "question-id") Long id){
         return questionService.questionDetail(id);
+    }
+
+    @Operation(summary = "Q&A 리스트 보기")
+    @GetMapping("/list")
+    public QuestionContestList questionDetail(){
+        return questionService.questionContestResponseList();
     }
 
     @PatchMapping("/modify/{question-id}")
