@@ -5,10 +5,6 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class QuestionRequest {
-
+public class QuestionTitleRequest {
     private String title;
-
-    private String content;
-
 }
