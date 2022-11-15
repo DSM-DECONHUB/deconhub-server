@@ -3,6 +3,7 @@ package com.example.deconhubserver.domain.contest.controller;
 import com.example.deconhubserver.domain.contest.dto.ContestList;
 import com.example.deconhubserver.domain.contest.dto.ContestRequest;
 import com.example.deconhubserver.domain.contest.dto.ContestResponse;
+import com.example.deconhubserver.domain.contest.dto.ContestResponseList;
 import com.example.deconhubserver.domain.contest.service.ContestService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,7 +23,7 @@ public class ContestController {
 
     @Operation(summary = "대회 전체보기")
     @GetMapping("/list")
-    public List<ContestList> contestLists(){
+    public ContestResponseList contestLists(){
         return contestService.contestList();
     }
 
