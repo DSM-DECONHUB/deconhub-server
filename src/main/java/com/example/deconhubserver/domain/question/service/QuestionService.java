@@ -3,8 +3,9 @@ package com.example.deconhubserver.domain.question.service;
 import com.example.deconhubserver.domain.contest.entity.Contest;
 import com.example.deconhubserver.domain.contest.exception.UserMissMatchedException;
 import com.example.deconhubserver.domain.contest.facade.ContestFacade;
+import com.example.deconhubserver.domain.question.dto.QuestionContentRequest;
 import com.example.deconhubserver.domain.question.dto.QuestionList;
-import com.example.deconhubserver.domain.question.dto.QuestionRequest;
+import com.example.deconhubserver.domain.question.dto.QuestionTitleRequest;
 import com.example.deconhubserver.domain.question.dto.QuestionResponse;
 import com.example.deconhubserver.domain.question.entity.Question;
 import com.example.deconhubserver.domain.question.facade.QuestionFacade;
@@ -29,7 +30,7 @@ public class QuestionService {
     private final ContestFacade contestFacade;
 
     @Transactional
-    public void createQuestion(QuestionRequest request, Long id){
+    public void createQuestion(QuestionTitleRequest request, Long id){
         User user = userFacade.getCurrentUser();
         Contest contest = contestFacade.findById(id);
         Question question = new Question(
@@ -66,7 +67,7 @@ public class QuestionService {
     }
 
     @Transactional
-    public void modifyQuestion(Long id,QuestionRequest request){
+    public void modifyQuestion(Long id, QuestionTitleRequest request){
         Question question = questionFacade.findById(id);
         User user = userFacade.getCurrentUser();
         if (!question.getUser().getId().equals(user.getId())){
@@ -76,7 +77,7 @@ public class QuestionService {
     }
 
     @Transactional
-    public void questionAnswer(Long id, QuestionRequest request){
+    public void questionAnswer(Long id, QuestionContentRequest request){
         Question question = questionFacade.findById(id);
         User user = userFacade.getCurrentUser();
         if(!user.getRole().equals(Role.ADMIN)){
