@@ -38,17 +38,11 @@ public class Contest {
 
     private String sponsor; // 대회 후원사
 
-    private String siteAddress; // 대회 사이트
+    private String siteAddress; // 대회 링크
 
     private String signCondition; //참가 조건
 
     private String signWay; // 참가 방법
-
-    private String history; // 시상 내역
-
-    private String topic; // 대회 주제
-
-    private String link; // 대회 링크
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -60,7 +54,7 @@ public class Contest {
     private String category; // 대회 카테고리
 
     @Builder
-    public Contest(String title, String introduce, String period, String place, LocalDateTime signPeriod, String sponsor, String siteAddress, String signCondition, String signWay, String history, String topic, String category, String link, User user){
+    public Contest(String title, String introduce, String period, String place, LocalDateTime signPeriod, String sponsor, String siteAddress, String signCondition, String signWay, String category, User user){
         this.title = title;
         this.introduce = introduce;
         this.period = period;
@@ -70,10 +64,7 @@ public class Contest {
         this.siteAddress = siteAddress;
         this.signCondition = signCondition;
         this.signWay = signWay;
-        this.history = history;
-        this.topic = topic;
         this.category = category;
-        this.link = link;
         this.user = user;
     }
 
@@ -87,9 +78,6 @@ public class Contest {
             this.siteAddress = request.getSiteAddress();
             this.signCondition = request.getSignCondition();
             this.signWay = request.getSignWay();
-            this.history = request.getHistory();
-            this.topic = request.getTopic();
             this.category = request.getCategory();
-            this.link = request.getLink();
     }
 }

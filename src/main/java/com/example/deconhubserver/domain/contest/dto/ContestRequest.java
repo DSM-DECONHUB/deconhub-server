@@ -23,17 +23,11 @@ public class ContestRequest {
 
     private String sponsor; // 대회 후원사
 
-    private String siteAddress; // 대회 사이트
+    private String siteAddress; // 대회 링크
 
     private String signCondition; //참가 조건
 
     private String signWay; // 참가 방법
-
-    private String history; // 시상 내역
-
-    private String topic; // 대회 주제
-
-    private String link; // 대회 링크
 
     private String category; // 대회 카테고리
 }

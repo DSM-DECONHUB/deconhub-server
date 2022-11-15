@@ -13,8 +13,6 @@ public class ContestList {
 
     private String title; // 대회 제목
 
-    private String topic; // 대회 주제
-
     private String category; // 대회 카테고리
 
 }

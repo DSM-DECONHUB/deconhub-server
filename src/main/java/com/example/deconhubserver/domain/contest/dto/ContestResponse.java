@@ -25,10 +25,6 @@ public class ContestResponse {
 
     private final String signWay; // 참가 방법
 
-    private final String history; // 시상 내역
-
-    private final String topic; // 대회 주제
-
     private final String category; // 대회 카테고리
 
 }
