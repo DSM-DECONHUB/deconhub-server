@@ -72,8 +72,14 @@ public class ContestService {
         for (Contest contest : contests) {
             ContestList dto = ContestList.builder()
                     .title(contest.getTitle())
+                    .introduce(contest.getIntroduce())
                     .period(contest.getPeriod())
+                    .place(contest.getPlace())
                     .dateTime(betweenDate(contest.getSignPeriod(), 2))
+                    .sponsor(contest.getSponsor())
+                    .siteAddress(contest.getSiteAddress())
+                    .signCondition(contest.getSignCondition())
+                    .signWay(contest.getSignWay())
                     .category(contest.getCategory()).build();
             contestLists.add(dto);
         }
@@ -89,8 +95,14 @@ public class ContestService {
         for (Contest contest : contests) {
                 ContestList dto = ContestList.builder()
                         .title(contest.getTitle())
+                        .introduce(contest.getIntroduce())
                         .period(contest.getPeriod())
+                        .place(contest.getPlace())
                         .dateTime(betweenDate(contest.getSignPeriod(), 2))
+                        .sponsor(contest.getSponsor())
+                        .siteAddress(contest.getSiteAddress())
+                        .signCondition(contest.getSignCondition())
+                        .signWay(contest.getSignWay())
                         .category(contest.getCategory()).build();
                 contestLists.add(dto);
         }
@@ -107,8 +119,14 @@ public class ContestService {
             if (contest.getSignPeriod().getYear() + contest.getSignPeriod().getDayOfMonth() + contest.getSignPeriod().getMonthValue() == date) {
                 ContestList dto = ContestList.builder()
                         .title(contest.getTitle())
+                        .introduce(contest.getIntroduce())
                         .period(contest.getPeriod())
+                        .place(contest.getPlace())
                         .dateTime(betweenDate(contest.getSignPeriod(), 2))
+                        .sponsor(contest.getSponsor())
+                        .siteAddress(contest.getSiteAddress())
+                        .signCondition(contest.getSignCondition())
+                        .signWay(contest.getSignWay())
                         .category(contest.getCategory()).build();
                 contestLists.add(dto);
             }
@@ -144,8 +162,14 @@ public class ContestService {
         for (Contest contest : contests) {
             ContestList dto = ContestList.builder()
                     .title(contest.getTitle())
+                    .introduce(contest.getIntroduce())
                     .period(contest.getPeriod())
+                    .place(contest.getPlace())
                     .dateTime(betweenDate(contest.getSignPeriod(), 2))
+                    .sponsor(contest.getSponsor())
+                    .siteAddress(contest.getSiteAddress())
+                    .signCondition(contest.getSignCondition())
+                    .signWay(contest.getSignWay())
                     .category(contest.getCategory()).build();
             contestLists.add(dto);
         }
@@ -161,8 +185,14 @@ public class ContestService {
         for (Contest contest : contests) {
             ContestList dto = ContestList.builder()
                     .title(contest.getTitle())
+                    .introduce(contest.getIntroduce())
                     .period(contest.getPeriod())
+                    .place(contest.getPlace())
                     .dateTime(betweenDate(contest.getSignPeriod(), 2))
+                    .sponsor(contest.getSponsor())
+                    .siteAddress(contest.getSiteAddress())
+                    .signCondition(contest.getSignCondition())
+                    .signWay(contest.getSignWay())
                     .category(contest.getCategory()).build();
             contestLists.add(dto);
 
