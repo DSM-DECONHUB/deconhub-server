@@ -7,6 +7,8 @@ import lombok.Getter;
 @Builder
 public class ContestResponse {
 
+    private final Long id; // 대회 아이디
+
     private final String title; // 대회 제목
 
     private final String introduce; // 대회 한줄 소개
