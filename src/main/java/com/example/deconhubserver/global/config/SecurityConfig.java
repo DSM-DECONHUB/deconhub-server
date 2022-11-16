@@ -45,6 +45,10 @@ public class SecurityConfig{
                 .antMatchers(HttpMethod.POST,"/user/lost/password").permitAll()
                 .antMatchers(HttpMethod.PATCH,"/user/lost/password").permitAll()
                 .antMatchers(HttpMethod.GET, "/user").authenticated()
+                .antMatchers(HttpMethod.GET,"/contest/list").permitAll()
+                .antMatchers(HttpMethod.GET,"/qna/list").permitAll()
+                .antMatchers(HttpMethod.POST, "/contest/create").permitAll()
+                .antMatchers(HttpMethod.POST,"/qna/create/**").permitAll()
 
                 .anyRequest().authenticated()
 
