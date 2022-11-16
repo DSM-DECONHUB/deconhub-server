@@ -71,6 +71,7 @@ public class ContestService {
 
         for (Contest contest : contests) {
             ContestList dto = ContestList.builder()
+                    .id(contest.getId())
                     .title(contest.getTitle())
                     .introduce(contest.getIntroduce())
                     .period(contest.getPeriod())
@@ -94,6 +95,7 @@ public class ContestService {
 
         for (Contest contest : contests) {
                 ContestList dto = ContestList.builder()
+                        .id(contest.getId())
                         .title(contest.getTitle())
                         .introduce(contest.getIntroduce())
                         .period(contest.getPeriod())
@@ -118,6 +120,7 @@ public class ContestService {
         for (Contest contest : contests) {
             if (contest.getSignPeriod().getYear() + contest.getSignPeriod().getDayOfMonth() + contest.getSignPeriod().getMonthValue() == date) {
                 ContestList dto = ContestList.builder()
+                        .id(contest.getId())
                         .title(contest.getTitle())
                         .introduce(contest.getIntroduce())
                         .period(contest.getPeriod())
@@ -139,6 +142,7 @@ public class ContestService {
         Contest contest = contestFacade.findById(contestId);
 
         return ContestResponse.builder()
+                .id(contest.getId())
                 .title(contest.getTitle())
                 .introduce(contest.getIntroduce())
                 .period(contest.getPeriod())
@@ -161,6 +165,7 @@ public class ContestService {
 
         for (Contest contest : contests) {
             ContestList dto = ContestList.builder()
+                    .id(contest.getId())
                     .title(contest.getTitle())
                     .introduce(contest.getIntroduce())
                     .period(contest.getPeriod())
@@ -184,6 +189,7 @@ public class ContestService {
 
         for (Contest contest : contests) {
             ContestList dto = ContestList.builder()
+                    .id(contest.getId())
                     .title(contest.getTitle())
                     .introduce(contest.getIntroduce())
                     .period(contest.getPeriod())
