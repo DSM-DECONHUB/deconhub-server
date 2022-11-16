@@ -17,6 +17,8 @@ public class ContestList {
 
     private final String dateTime; // 신청기간 결과
 
+    private final Long id; // 대회 아이디
+
     private final String sponsor; // 대회 후원사
 
     private final String siteAddress; // 대회 사이트
