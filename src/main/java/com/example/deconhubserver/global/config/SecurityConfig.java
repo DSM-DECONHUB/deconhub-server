@@ -49,6 +49,7 @@ public class SecurityConfig{
                 .antMatchers(HttpMethod.GET,"/qna/list").permitAll()
                 .antMatchers(HttpMethod.POST, "/contest/create").permitAll()
                 .antMatchers(HttpMethod.POST,"/qna/create/**").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/contest/delete/**").permitAll()
 
                 .anyRequest().authenticated()
 
