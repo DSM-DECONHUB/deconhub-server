@@ -24,7 +24,7 @@ public class QuestionController {
         questionService.createQuestion(request, id);
     }
 
-    @Operation(summary = "Q&A 리스트 보기")
+    @Operation(summary = "Q&A 리스트 대회 필터 보기")
     @GetMapping("/list/{contest-id}")
     public List<QuestionList> questionList(@PathVariable(name = "contest-id") Long id){
         return questionService.questionList(id);
@@ -36,9 +36,13 @@ public class QuestionController {
         return questionService.questionDetail(id);
     }
 
+    @Operation(summary = "답변 안달린것만 보기")
+    @GetMapping("/list/none/content")
+    public QuestionContestList questionNoneContent(){return questionService.questionNoneContent();}
+
     @Operation(summary = "Q&A 리스트 보기")
     @GetMapping("/list")
-    public QuestionContestList questionDetail(){
+    public QuestionContestList questionList(){
         return questionService.questionContestResponseList();
     }
 

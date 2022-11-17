@@ -55,6 +55,25 @@ public class QuestionService {
     }
 
     @Transactional(readOnly = true)
+    public QuestionContestList questionNoneContent() {
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        List<Question> questions = questionFacade.findAllById(sort);
+        List<QuestionContestResponse> questionLists = new ArrayList<>();
+
+        for (Question question : questions) {
+            if (question.getContent() == null) {
+                QuestionContestResponse dto = QuestionContestResponse.builder()
+                        .questionId(question.getId())
+                        .contestId(question.getContest().getId())
+                        .contestName(question.getContest().getTitle())
+                        .questionTitle(question.getTitle()).build();
+                questionLists.add(dto);
+            }
+        }
+        return new QuestionContestList(questionLists);
+    }
+
+    @Transactional(readOnly = true)
     public QuestionResponse questionDetail(Long id) {
         Question question = questionFacade.findById(id);
         return QuestionResponse.builder()
@@ -94,9 +113,9 @@ public class QuestionService {
     public void questionAnswer(Long id, QuestionContentRequest request) {
         Question question = questionFacade.findById(id);
         User user = userFacade.getCurrentUser();
-        if (!user.getRole().equals(Role.ADMIN)) {
-            throw UserMissMatchedException.EXCEPTION;
-        }
+//        if (!user.getRole().equals(Role.ADMIN)) {
+//            throw UserMissMatchedException.EXCEPTION;
+//        }
         question.answerQuestion(request.getContent());
     }
 
