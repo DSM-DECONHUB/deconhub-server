@@ -1,6 +1,7 @@
 package com.example.deconhubserver.domain.contest.service;
 
 import com.example.deconhubserver.domain.contest.dto.ContestList;
+import com.example.deconhubserver.domain.contest.dto.ContestListResponse;
 import com.example.deconhubserver.domain.contest.dto.ContestRequest;
 import com.example.deconhubserver.domain.contest.dto.ContestResponse;
 import com.example.deconhubserver.domain.contest.dto.ContestResponseList;
@@ -11,6 +12,7 @@ import com.example.deconhubserver.domain.contest.repository.ContestRepository;
 import com.example.deconhubserver.domain.user.entity.User;
 import com.example.deconhubserver.domain.user.enums.Role;
 import com.example.deconhubserver.domain.user.facade.UserFacade;
+import com.example.deconhubserver.infrastucture.fcm.FcmUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,7 @@ public class ContestService {
     private final ContestRepository contestRepository;
     private final ContestFacade contestFacade;
     private final UserFacade userFacade;
+    private final FcmUtil fcmUtil;
 
     @Transactional // 대회 생성
     public void createContest(ContestRequest request) {
@@ -45,6 +48,8 @@ public class ContestService {
                 request.getCategory(),
                 user
         );
+
+        fcmUtil.sendContest(contest);
 
         contestRepository.save(contest);
     }
