@@ -58,6 +58,8 @@ public class UserService {
             throw PasswordMissMatchedException.EXCEPTION;
         }
 
+        user.setDeviceToken(request.getDeviceToken());
+
         return UserResponse.of(user);
     }
 

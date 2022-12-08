@@ -41,6 +41,9 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
+    @Column(name = "device_token")
+    private String deviceToken;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Contest> contests;
 
@@ -60,5 +63,9 @@ public class User {
     }
 
     public void setCode(String code){ this.code = code;}
+
+    public void setDeviceToken(String deviceToken) {
+        this.deviceToken = deviceToken;
+    }
 
 }

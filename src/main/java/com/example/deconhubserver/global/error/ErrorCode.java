@@ -23,6 +23,8 @@ public enum ErrorCode {
 
     IMAGE_NOT_FOUND(404, "Image Not Found"),
     INVALID_IMAGE_EXTENSION(401, "Invalid Image Extension"),
+
+    NOTIFICATION_NOT_FOUND(404, "Notification Not Found"),
     INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
 
     JWT_EXPIRED(401, "Jwt Expired"),
